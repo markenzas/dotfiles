@@ -51,7 +51,29 @@ return {
         "typescript",
         "tsx",
       },
+      autotag = { enable = true },
     },
+  },
+
+  {
+    "rcarriga/nvim-notify",
+    config = function()
+      require("notify").setup {
+        stages = "fade",
+        timeout = 3000,
+      }
+      vim.notify = require "notify"
+    end,
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+    lazy = true,
+    event = "VeryLazy",
   },
 
   {
