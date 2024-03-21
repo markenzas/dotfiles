@@ -28,6 +28,7 @@ return {
         "phpactor",
         "php-cs-fixer",
         "typescript-language-server",
+        "tailwindcss-language-server",
       },
     },
   },
@@ -53,17 +54,6 @@ return {
       },
       autotag = { enable = true },
     },
-  },
-
-  {
-    "rcarriga/nvim-notify",
-    config = function()
-      require("notify").setup {
-        stages = "fade",
-        timeout = 3000,
-      }
-      vim.notify = require "notify"
-    end,
   },
 
   {
