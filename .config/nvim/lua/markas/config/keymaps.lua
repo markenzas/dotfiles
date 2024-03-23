@@ -30,3 +30,28 @@ map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 map("n", "<Leader>fm", function()
     require("conform").format({ lsp_fallback = true })
 end, { desc = "Format Files" })
+
+-- Nvimtree
+map("n", "<Leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle Window" })
+
+-- Bufferline
+map("n", "<Leader>b", "<cmd>enew<CR>", { desc = "Buffer New" })
+map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Buffer Goto next" })
+map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Buffer Goto prev" })
+map("n", "<leader>x", "<cmd>bd<CR>", { desc = "Buffer Close" })
+
+-- Blankline
+map("n", "<leader>bl", function()
+    local config = { scope = {} }
+    config.scope.exclude = { language = {}, node_type = {} }
+    config.scope.include = { node_type = {} }
+    local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
+
+    if node then
+        local start_row, _, end_row, _ = node:range()
+        if start_row ~= end_row then
+            vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start_row + 1, 0 })
+            vim.api.nvim_feedkeys("_", "n", true)
+        end
+    end
+end, { desc = "Blankline Jump to current context" })
