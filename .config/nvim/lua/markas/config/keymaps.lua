@@ -55,3 +55,6 @@ map("n", "<leader>bl", function()
         end
     end
 end, { desc = "Blankline Jump to current context" })
+
+-- Git | vim-fugitive
+map("n", "<Leader>gb", "<cmd>Git blame<CR>", { desc = "Git blame file " })

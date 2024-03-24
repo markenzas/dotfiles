@@ -2,7 +2,6 @@ return { -- Autocompletion
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-        -- Snippet Engine & its associated nvim-cmp source
         {
             "L3MON4D3/LuaSnip",
             build = (function()
@@ -52,20 +51,6 @@ return { -- Autocompletion
         end
 
         cmp.setup({
-            formatting = {
-                expandable_indicator = true,
-                format = function(entry, vim_item)
-                    if vim.tbl_contains({ "path" }, entry.source.name) then
-                        local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
-                        if icon then
-                            vim_item.kind = icon
-                            vim_item.kind_hl_group = hl_group
-                            return vim_item
-                        end
-                    end
-                    return require("lspkind").cmp_format({ with_text = false })(entry, vim_item)
-                end,
-            },
 
             snippet = {
                 expand = function(args)
@@ -114,6 +99,21 @@ return { -- Autocompletion
                 { name = "nvim_lsp", group_index = 2 },
                 { name = "luasnip", group_index = 2 },
                 { name = "path", group_index = 2 },
+            },
+
+            formatting = {
+                expandable_indicator = true,
+                format = function(entry, vim_item)
+                    if vim.tbl_contains({ "path" }, entry.source.name) then
+                        local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
+                        if icon then
+                            vim_item.kind = icon
+                            vim_item.kind_hl_group = hl_group
+                            return vim_item
+                        end
+                    end
+                    return require("lspkind").cmp_format({ with_text = false })(entry, vim_item)
+                end,
             },
         })
     end,

@@ -1,6 +1,9 @@
 return {
     -- Collection of various small independent plugins/modules
     "echasnovski/mini.nvim",
+    dependencies = {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+    },
     config = function()
         -- Better Around/Inside textobjects
         --
@@ -32,7 +35,20 @@ return {
             return "%2l:%-2v"
         end
 
-        -- ... and there is more!
-        --  Check out: https://github.com/echasnovski/mini.nvim
+        require("mini.comment").setup({
+            options = {
+                custom_commentstring = function()
+                    return require("ts_context_commentstring.internal").calculate_commentstring()
+                end,
+            },
+        })
+
+        require("mini.pairs").setup({})
+
+        require("mini.notify").setup({})
+
+        require("mini.move").setup({})
+
+        require("mini.jump").setup({})
     end,
 }
