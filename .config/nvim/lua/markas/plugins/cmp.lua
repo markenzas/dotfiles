@@ -103,7 +103,19 @@ return { -- Autocompletion
 
             formatting = {
                 expandable_indicator = true,
+
+                fields = { "abbr", "kind", "menu" },
+
                 format = function(entry, vim_item)
+                    local lspkind = require("lspkind")
+
+                    -- Copilot Icon
+                    lspkind.cmp_format({
+                        mode = "symbol",
+                        max_width = 50,
+                        symbol_map = { Copilot = "" },
+                    })
+
                     if vim.tbl_contains({ "path" }, entry.source.name) then
                         local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
                         if icon then
@@ -112,7 +124,8 @@ return { -- Autocompletion
                             return vim_item
                         end
                     end
-                    return require("lspkind").cmp_format({ with_text = false })(entry, vim_item)
+
+                    return lspkind.cmp_format({ with_text = false })(entry, vim_item)
                 end,
             },
         })
