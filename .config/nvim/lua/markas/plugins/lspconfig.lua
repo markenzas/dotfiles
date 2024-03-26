@@ -145,10 +145,6 @@ return { -- LSP Configuration & Plugins
             },
             tailwindcss = {
                 filetypes = {
-                    "css",
-                    "less",
-                    "sass",
-                    "scss",
                     "javascript",
                     "javascriptreact",
                     "typescript",
