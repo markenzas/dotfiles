@@ -1,15 +1,19 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        "nvim-treesitter/nvim-treesitter-context",
+    },
     build = ":TSUpdate",
     opts = {
         ensure_installed = {
             "bash",
             "c",
-            "html",
             "lua",
             "markdown",
             "vim",
             "vimdoc",
+            "go",
 
             -- NOTE: Webdev
             "html",
@@ -27,17 +31,26 @@ return {
         },
         indent = { enable = true },
     },
-    config = function(_, opts)
-        -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    config = function()
+        -- [[ Configure Treesitter ]] See `:help nvim-treesitterhttps://github.com/nvim-treesitter/nvim-treesitter-textobjects`
 
-        ---@diagnostic disable-next-line: missing-fields
-        require("nvim-treesitter.configs").setup(opts)
-
-        -- There are additional nvim-treesitter modules that you can use to interact
-        -- with nvim-treesitter. You should go explore a few and see what interests you:
-        --
-        --    - Incremental selection: Included, see `:help nvim-treesitter-incremental-selection-mod`
-        --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
-        --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+        require("nvim-treesitter.configs").setup({
+            textobjects = {
+                select = {
+                    enable = true,
+                    lookahead = true,
+                    keymaps = {
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
+                        ["ac"] = "@class.outer",
+                        ["ic"] = "@class.inner",
+                    },
+                },
+            },
+            context = {
+                enable = true,
+                max_lines = 1,
+            },
+        })
     end,
 }

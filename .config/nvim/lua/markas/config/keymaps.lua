@@ -58,3 +58,16 @@ end, { desc = "Blankline Jump to current context" })
 
 -- Git | vim-fugitive
 map("n", "<Leader>gb", "<cmd>Git blame<CR>", { desc = "Git blame file " })
+
+-- Navigate between nvim & tmux
+map("n", "<C-k>", ":windcmd k<CR>", { desc = "Move focus to the upper window" })
+map("n", "<C-j>", ":windcmd j<CR>", { desc = "Move focus to the lower window" })
+map("n", "<C-h>", ":windcmd h<CR>", { desc = "Move focus to the left window" })
+map("n", "<C-l>", ":windcmd l<CR>", { desc = "Move focus to the right window" })
+
+-- Vim Test
+map("n", "<Leader>tt", "<cmd>TestNearest<CR>", { desc = "Test Nearest" })
+map("n", "<Leader>tf", "<cmd>TestFile<CR>", { desc = "Test File" })
+map("n", "<Leader>ts", "<cmd>TestSuite<CR>", { desc = "Test Suite" })
+map("n", "<Leader>tl", "<cmd>TestLast<CR>", { desc = "Test Last" })
+map("n", "<Leader>tv", "<cmd>TestVisit<CR>", { desc = "Test Visit" })

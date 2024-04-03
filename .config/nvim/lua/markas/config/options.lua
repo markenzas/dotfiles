@@ -39,6 +39,9 @@ vim.opt.signcolumn = "yes"
 -- Decrease update time
 vim.opt.updatetime = 250
 
+-- Dont wrap lines
+vim.opt.wrap = false
+
 -- Decrease mapped sequence wait time
 -- Displays which-key popup sooner
 vim.opt.timeoutlen = 300
@@ -52,6 +55,9 @@ vim.opt.splitbelow = true
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
+-- Tabstop
+vim.opt.tabstop = 4
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"

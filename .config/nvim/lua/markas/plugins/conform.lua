@@ -22,6 +22,7 @@ return { -- Autoformat
             javascriptreact = { "prettierd" },
             typescript = { "prettierd" },
             typescriptreact = { "prettierd" },
+            ggo = { "goimports", "gofmt" },
         },
     },
 }

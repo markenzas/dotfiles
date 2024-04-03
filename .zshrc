@@ -83,6 +83,13 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 export PATH="$PATH:/opt/nvim-linux64/bin"
+
+# Golang
+export PATH=$PATH:/usr/local/go/bin
+
+if [ -x "$(command -v go)" ] && [ -d "$(go env GOPATH)/bin" ]; then
+    PATH="$(go env GOPATH)/bin:$PATH"
+fi
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
