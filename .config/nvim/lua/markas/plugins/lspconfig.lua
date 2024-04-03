@@ -175,7 +175,6 @@ return { -- LSP Configuration & Plugins
         vim.list_extend(ensure_installed, {
             "stylua",
             "clangd",
-            "gopls",
 
             -- Webdev
             "html-lsp",
@@ -184,8 +183,6 @@ return { -- LSP Configuration & Plugins
             "phpactor",
             "php-cs-fixer",
             "typescript-language-server",
-            "htmx-lsp",
-            "templ",
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
