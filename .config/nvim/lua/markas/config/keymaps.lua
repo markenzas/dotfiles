@@ -7,8 +7,8 @@ map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Diagnostic keymaps
 map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+map("n", "<Leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
+map("n", "<Leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -32,16 +32,23 @@ map("n", "<Leader>fm", function()
 end, { desc = "Format Files" })
 
 -- Nvimtree
-map("n", "<Leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle Window" })
+map("n", "<Leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle Window" })
+map("n", "<Leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Nvimtree Toggle Window on current file" })
 
 -- Bufferline
-map("n", "<Leader>b", "<cmd>enew<CR>", { desc = "Buffer New" })
+map("n", "<Leader>bn", "<cmd>enew<CR>", { desc = "Buffer New" })
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Buffer Goto next" })
 map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Buffer Goto prev" })
-map("n", "<leader>x", "<cmd>bd<CR>", { desc = "Buffer Close" })
+map("n", "<Leader>bx", "<cmd>bd<CR>", { desc = "Buffer Close" })
+
+-- Window management
+map("n", "<Leader>sv", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<Leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+map("n", "<Leader>se", "<C-w>=", { desc = "Make splits equal size" })
+map("n", "<Leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- Blankline
-map("n", "<leader>bl", function()
+map("n", "<Leader>bl", function()
     local config = { scope = {} }
     config.scope.exclude = { language = {}, node_type = {} }
     config.scope.include = { node_type = {} }

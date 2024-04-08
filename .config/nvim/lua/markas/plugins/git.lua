@@ -24,7 +24,27 @@ return {
                 map("n", "<Leader>gr", gs.reset_hunk, opts("Reset Hunk"))
                 map("n", "<Leader>gh", gs.preview_hunk, opts("Preview Hunk"))
                 map("n", "<Leader>gB", gs.blame_line, opts("Blame Line"))
+                map("n", "<Leader>gd", gs.diffthis, opts("Diff this"))
             end,
+        },
+    },
+    {
+        "kdheepak/lazygit.nvim",
+        cmd = {
+            "LazyGit",
+            "LazyGitConfig",
+            "LazyGitCurrentFile",
+            "LazyGitFilter",
+            "LazyGitFilterCurrentFile",
+        },
+        -- optional for floating window border decoration
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        -- setting the keybinding for LazyGit with 'keys' is recommended in
+        -- order to load the plugin when the command is run for the first time
+        keys = {
+            { "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open [G]it" },
         },
     },
 }
