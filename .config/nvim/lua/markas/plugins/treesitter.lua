@@ -27,6 +27,7 @@ return {
                 "dockerfile",
                 "graphql",
                 "json",
+                "prisma",
                 "javascript",
                 "typescript",
                 "tsx",

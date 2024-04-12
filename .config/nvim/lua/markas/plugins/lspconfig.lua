@@ -4,10 +4,7 @@ return { -- LSP Configuration & Plugins
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-
-        -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
         { "j-hui/fidget.nvim", opts = {} },
-
         { "folke/neodev.nvim", opts = {} },
     },
     config = function()
@@ -132,6 +129,7 @@ return { -- LSP Configuration & Plugins
             "phpactor",
             "php-cs-fixer",
             "typescript-language-server",
+            "prismals",
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
