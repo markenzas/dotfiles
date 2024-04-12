@@ -78,3 +78,6 @@ map("n", "<Leader>tf", "<cmd>TestFile<CR>", { desc = "Test File" })
 map("n", "<Leader>ts", "<cmd>TestSuite<CR>", { desc = "Test Suite" })
 map("n", "<Leader>tl", "<cmd>TestLast<CR>", { desc = "Test Last" })
 map("n", "<Leader>tv", "<cmd>TestVisit<CR>", { desc = "Test Visit" })
+
+-- Noice.nvim
+map("n", "<Leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })

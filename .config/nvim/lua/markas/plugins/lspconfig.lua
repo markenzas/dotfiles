@@ -110,7 +110,13 @@ return { -- LSP Configuration & Plugins
                     "htmldjango",
                     "blade",
                     "astro",
+                    "css",
+                    "scss",
+                    "less",
                 },
+            },
+            cssmodules_ls = {
+                camelCase = true,
             },
         }
 
@@ -123,7 +129,6 @@ return { -- LSP Configuration & Plugins
 
             -- Webdev
             "html-lsp",
-            "css-lsp",
             "eslint_d",
             "prettierd",
             "phpactor",
