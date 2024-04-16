@@ -126,6 +126,7 @@ return {
         vim.list_extend(ensure_installed, {
             "stylua",
             "clangd",
+            "markdownlint",
 
             -- Webdev
             "html-lsp",
