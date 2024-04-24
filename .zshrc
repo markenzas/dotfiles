@@ -113,9 +113,10 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ue5=apps/UnrealEngine5.3.2/Engine/Binaries/Linux/UnrealEditor
+alias vi=nvim
 alias vim=nvim
 alias python=python3
+alias obs-notes=cd /mnt/c/Users/markas/Documents/Notebookas
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
