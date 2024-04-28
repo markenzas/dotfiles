@@ -116,7 +116,7 @@ fi
 alias vi=nvim
 alias vim=nvim
 alias python=python3
-alias obs-notes=cd /mnt/c/Users/markas/Documents/Notebookas
+alias obs-notes='cd /mnt/c/Users/markas/Documents/Notebookas'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
