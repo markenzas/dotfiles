@@ -87,4 +87,4 @@ map("n", "<Leader>cc", "<cmd>CopilotChatToggle<CR>", { desc = "[C]opilot [C]hat 
 map("n", "<Leader>ce", "<cmd>CopilotChatExplain<CR>", { desc = "[C]opilot [E]xplain Selection" })
 map("n", "<Leader>cr", "<cmd>CopilotChatReview<CR>", { desc = "[C]opilot [R]eview Selection" })
 map("n", "<Leader>ct", "<cmd>CopilotChatTests<CR>", { desc = "[C]opilot generate [T]ests" })
-map("n", "<Leader>cf", "<cmd>CopiloChatFixDiagnostic<CR>", { desc = "[C]opilot [F]ix diagnostic issue in file" })
+map("n", "<Leader>cf", "<cmd>CopilotChatFix<CR>", { desc = "[C]opilot [F]ix diagnostic issue in file" })

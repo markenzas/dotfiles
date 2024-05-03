@@ -117,6 +117,10 @@ return {
             },
             cssmodules_ls = {
                 camelCase = true,
+                filetypes = {
+                    "sass",
+                    "scss",
+                },
             },
         }
 

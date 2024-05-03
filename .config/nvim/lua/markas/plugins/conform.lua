@@ -15,6 +15,8 @@ return {
         formatters_by_ft = {
             lua = { "stylua" },
             css = { "prettierd" },
+            scss = { "prettierd" },
+            sass = { "prettierd" },
             html = { "prettierd" },
             php = { "php_cs_fixer" },
             json = { "prettierd" },
