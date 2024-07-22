@@ -84,7 +84,7 @@ map("n", "<Leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message"
 
 -- Copilot chat
 map("n", "<Leader>cc", "<cmd>CopilotChatToggle<CR>", { desc = "[C]opilot [C]hat Open" })
-map("n", "<Leader>ce", "<cmd>CopilotChatExplain<CR>", { desc = "[C]opilot [E]xplain Selection" })
+map("n", "<Leader>cf", "<cmd>CopilotChatFix<CR>", { desc = "[C]opilot [F]ix problem in file" })
 map("n", "<Leader>cr", "<cmd>CopilotChatReview<CR>", { desc = "[C]opilot [R]eview Selection" })
 map("n", "<Leader>ct", "<cmd>CopilotChatTests<CR>", { desc = "[C]opilot generate [T]ests" })
-map("n", "<Leader>cf", "<cmd>CopilotChatFix<CR>", { desc = "[C]opilot [F]ix diagnostic issue in file" })
+map("n", "<Leader>cf", "<cmd>CopilotChatFixDiagnostic<CR>", { desc = "[C]opilot [F]ix diagnostic issue in file" })
