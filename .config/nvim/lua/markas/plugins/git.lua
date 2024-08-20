@@ -1,5 +1,4 @@
 return {
-    { "tpope/vim-fugitive" },
     {
         "lewis6991/gitsigns.nvim",
         opts = {
@@ -46,5 +45,16 @@ return {
         keys = {
             { "<leader>gg", "<cmd>LazyGit<cr>", desc = "Open [G]it" },
         },
+    },
+    {
+        "pwntester/octo.nvim",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim",
+            "nvim-tree/nvim-web-devicons",
+        },
+        config = function()
+            require("octo").setup()
+        end,
     },
 }
