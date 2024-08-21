@@ -139,6 +139,7 @@ return {
             "phpactor",
             "php-cs-fixer",
             "prismals",
+            "vtsls", -- Typescript Server
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
