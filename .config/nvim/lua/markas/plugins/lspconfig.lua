@@ -140,6 +140,7 @@ return {
             "php-cs-fixer",
             "prismals",
             "vtsls", -- Typescript Server
+            "vue-language-server", -- Vue
         })
         require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

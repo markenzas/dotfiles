@@ -57,4 +57,15 @@ return {
             require("octo").setup()
         end,
     },
+    {
+        "sindrets/diffview.nvim",
+        cmd = {
+            "DiffviewOpen",
+            "DiffviewFileHistory",
+            "DiffviewToggleFiles",
+            "DiffviewFocusFiles",
+            "DiffviewRefresh",
+            "DiffviewClose",
+        },
+    },
 }

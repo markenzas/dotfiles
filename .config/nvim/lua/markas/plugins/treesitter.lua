@@ -30,6 +30,7 @@ return {
                 "javascript",
                 "typescript",
                 "tsx",
+                "vue",
             },
 
             highlight = {
