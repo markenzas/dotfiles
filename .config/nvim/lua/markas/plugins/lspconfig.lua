@@ -5,7 +5,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         { "j-hui/fidget.nvim", opts = {} },
-        { "folke/neodev.nvim", opts = {} },
+        { "folke/lazydev.nvim", opts = {} },
     },
     config = function()
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -102,7 +102,6 @@ return {
                     "javascriptreact",
                     "typescript",
                     "typescriptreact",
-                    "vue",
                     "twig",
                     "html",
                     "gohtml",
@@ -121,6 +120,45 @@ return {
                     "sass",
                     "scss",
                 },
+            },
+            volar = {
+                filetypes = { "vue" },
+                init_options = {
+                    vue = {
+                        hybridMode = true,
+                    },
+                },
+                capabilities = {
+                    workspace = {
+                        didChangeWatchedFiles = {
+                            dynamicRegistration = true, -- NOTE: `dynamicRegistration: true` reduces greatly the performance on nvim < 0.10.0
+                        },
+                    },
+                },
+            },
+            vtsls = {
+                filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+                settings = {
+                    vtsls = { tsserver = { globalPlugins = {} } },
+                },
+                before_init = function(params, config)
+                    local result = vim.system(
+                        { "npm", "query", "#vue" },
+                        { cwd = params.workspaceFolders[1].name, text = true }
+                    )
+                        :wait()
+                    if result.stdout ~= "[]" then
+                        local vuePluginConfig = {
+                            name = "@vue/typescript-plugin",
+                            location = require("mason-registry").get_package("vue-language-server"):get_install_path()
+                                .. "/node_modules/@vue/language-server",
+                            languages = { "vue" },
+                            configNamespace = "typescript",
+                            enableForWorkspaceTypeScriptVersions = true,
+                        }
+                        table.insert(config.settings.vtsls.tsserver.globalPlugins, vuePluginConfig)
+                    end
+                end,
             },
         }
 

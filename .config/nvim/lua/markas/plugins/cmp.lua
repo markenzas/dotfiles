@@ -84,7 +84,6 @@ return { -- Autocompletion
             }),
 
             sources = {
-                { name = "copilot", group_index = 2 },
                 { name = "nvim_lsp", group_index = 2 },
                 { name = "luasnip", group_index = 2 },
                 { name = "buffer", group_index = 2 },
@@ -98,13 +97,6 @@ return { -- Autocompletion
 
                 format = function(entry, vim_item)
                     local lspkind = require("lspkind")
-
-                    -- Copilot Icon
-                    lspkind.cmp_format({
-                        mode = "symbol",
-                        max_width = 50,
-                        symbol_map = { Copilot = "" },
-                    })
 
                     if vim.tbl_contains({ "path" }, entry.source.name) then
                         local icon, hl_group = require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
