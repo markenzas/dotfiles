@@ -43,10 +43,6 @@ map("n", "<Leader>fm", function()
     require("conform").format({ lsp_fallback = true })
 end, { desc = "Format Files" })
 
--- Nvimtree
-map("n", "<Leader>ee", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle Window" })
-map("n", "<Leader>ef", "<cmd>NvimTreeFindFileToggle<CR>", { desc = "Nvimtree Toggle Window on current file" })
-
 -- Bufferline
 map("n", "<Leader>bn", "<cmd>enew<CR>", { desc = "Buffer New" })
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Buffer Goto next" })
