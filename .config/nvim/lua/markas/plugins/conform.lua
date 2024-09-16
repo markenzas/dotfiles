@@ -1,3 +1,4 @@
+local with_prettier = { "prettierd", lsp_format = "fallback" }
 return {
     "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile" },
@@ -13,20 +14,20 @@ return {
             }
         end,
         formatters_by_ft = {
-            lua = { "stylua" },
-            css = { "eslint_d" },
-            scss = { "eslint_d" },
-            sass = { "eslint_d" },
-            html = { "eslint_d" },
+            lua = { "stylua", lsp_format = "fallback" },
+            css = with_prettier,
+            scss = with_prettier,
+            sass = with_prettier,
+            html = with_prettier,
             php = { "php_cs_fixer" },
-            json = { "prettierd", lsp_format = "fallback" },
-            yaml = { "prettierd" },
-            markdown = { "prettierd" },
-            javascript = { "eslint_d", "prettierd", lsp_format = "fallback", stop_after_first = true },
-            typescript = { "eslint_d", "prettierd", lsp_format = "fallback", stop_after_first = true },
-            javascriptreact = { "eslint_d", "prettierd", lsp_format = "fallback", stop_after_first = true },
-            typescriptreact = { "eslint_d", "prettierd", lsp_format = "fallback", stop_after_first = true },
-            vue = { "eslint_d", "prettierd", lsp_format = "fallback", stop_after_first = true },
+            json = with_prettier,
+            yaml = with_prettier,
+            markdown = with_prettier,
+            javascript = with_prettier,
+            typescript = with_prettier,
+            javascriptreact = with_prettier,
+            typescriptreact = with_prettier,
+            vue = with_prettier,
         },
     },
 }
