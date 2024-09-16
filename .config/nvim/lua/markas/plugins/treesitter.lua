@@ -31,6 +31,11 @@ return {
                 "typescript",
                 "tsx",
                 "vue",
+
+                -- NOTE: DevOps
+                "dockerfile",
+                "yaml",
+                "terraform",
             },
 
             highlight = {
