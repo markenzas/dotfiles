@@ -24,6 +24,16 @@ return { -- Fuzzy Finder (files, etc)
                     require("telescope.themes").get_dropdown(),
                 },
             },
+            live_grep = {
+                file_ignore_patterns = { "node_modules" },
+                additional_args = function(_)
+                    return { "--hidden" }
+                end,
+            },
+            find_files = {
+                file_ignore_patterns = { "node_modules" },
+                hidden = true,
+            },
         })
 
         pcall(telescope.load_extension, "fzf")
