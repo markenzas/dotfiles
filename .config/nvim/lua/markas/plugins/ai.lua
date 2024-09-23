@@ -1,14 +1,5 @@
 return {
-    "monkoose/neocodeium",
+    "github/copilot.vim",
     event = "VeryLazy",
-    config = function()
-        local neocodeium = require("neocodeium")
-        neocodeium.setup({
-            filetypes = {
-                TelescopePrompt = false,
-                ["dap-repl"] = false,
-            },
-        })
-        vim.keymap.set("i", "<A-f>", neocodeium.accept)
-    end,
+    config = function() end,
 }
