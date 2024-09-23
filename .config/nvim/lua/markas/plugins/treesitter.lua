@@ -17,7 +17,6 @@ return {
                 "markdown",
                 "vim",
                 "vimdoc",
-                "rust",
 
                 -- NOTE: Webdev
                 "html",

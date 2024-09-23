@@ -174,7 +174,6 @@ return {
             vim.list_extend(ensure_installed, {
                 "stylua",
                 "clangd",
-                "rust-analyzer",
                 "markdownlint",
 
                 -- Webdev
@@ -200,6 +199,9 @@ return {
             })
         end,
     },
-    "mrcjkb/rustaceanvim",
-    version = "^5", -- Recommended
+    {
+        "mrcjkb/rustaceanvim",
+        version = "^5", -- Recommended
+        lazy = false, -- This plugin is already lazy
+    },
 }
