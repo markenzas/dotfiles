@@ -127,46 +127,70 @@ return {
                     },
                 },
                 volar = {
-                    filetypes = { "vue" },
                     init_options = {
                         vue = {
-                            hybridMode = true,
+                            hybridMode = false,
                         },
                     },
-                    capabilities = {
-                        workspace = {
-                            didChangeWatchedFiles = {
-                                dynamicRegistration = true, -- NOTE: `dynamicRegistration: true` reduces greatly the performance on nvim < 0.10.0
+                    settings = {
+                        typescript = {
+                            inlayHints = {
+                                enumMemberValues = {
+                                    enabled = true,
+                                },
+                                functionLikeReturnTypes = {
+                                    enabled = true,
+                                },
+                                propertyDeclarationTypes = {
+                                    enabled = true,
+                                },
+                                parameterTypes = {
+                                    enabled = true,
+                                    suppressWhenArgumentMatchesName = true,
+                                },
+                                variableTypes = {
+                                    enabled = true,
+                                },
                             },
                         },
                     },
                 },
                 vtsls = {
-                    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
-                    settings = {
-                        vtsls = { tsserver = { globalPlugins = {} } },
-                    },
-                    before_init = function(params, config)
-                        local result = vim.system(
-                            { "npm", "query", "#vue" },
-                            { cwd = params.workspaceFolders[1].name, text = true }
-                        ):wait()
-                        if result.stdout ~= "[]" then
-                            local vuePluginConfig = {
+                    init_options = {
+                        plugins = {
+                            {
                                 name = "@vue/typescript-plugin",
-                                location = require("mason-registry")
-                                    .get_package("vue-language-server")
-                                    :get_install_path()
-                                    .. "/node_modules/@vue/language-server",
+                                location = vim.fn.stdpath("data")
+                                    .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
                                 languages = { "vue" },
-                                configNamespace = "typescript",
-                                enableForWorkspaceTypeScriptVersions = true,
-                            }
-                            table.insert(config.settings.vtsls.tsserver.globalPlugins, vuePluginConfig)
-                        end
-                    end,
+                            },
+                        },
+                    },
+                    settings = {
+                        typescript = {
+                            tsserver = {
+                                useSyntaxServer = false,
+                            },
+                            inlayHints = {
+                                includeInlayParameterNameHints = "all",
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                                includeInlayFunctionParameterTypeHints = true,
+                                includeInlayVariableTypeHints = true,
+                                includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+                                includeInlayPropertyDeclarationTypeHints = true,
+                                includeInlayFunctionLikeReturnTypeHints = true,
+                                includeInlayEnumMemberValueHints = true,
+                            },
+                        },
+                    },
                 },
             }
+
+            -- Inlay Hints
+            local opts = { noremap = true, silent = true }
+            vim.keymap.set({ "n", "i" }, "gI", function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+            end, opts)
 
             require("mason").setup()
 
@@ -174,8 +198,8 @@ return {
             vim.list_extend(ensure_installed, {
                 "stylua",
                 "clangd",
-                "markdownlint",
 
+                "markdownlint",
                 -- Webdev
                 "html-lsp",
                 "eslint_d",
@@ -183,8 +207,8 @@ return {
                 "phpactor",
                 "php-cs-fixer",
                 "prismals",
-                "vtsls", -- Typescript Server
                 "vue-language-server", -- Vue
+                "vtsls", -- Typescript Server
             })
             require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -204,4 +228,5 @@ return {
         version = "^5", -- Recommended
         lazy = false, -- This plugin is already lazy
     },
+    { "dmmulroy/ts-error-translator.nvim" },
 }
