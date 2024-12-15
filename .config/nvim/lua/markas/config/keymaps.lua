@@ -55,9 +55,6 @@ map("n", "<Leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 map("n", "<Leader>se", "<C-w>=", { desc = "Make splits equal size" })
 map("n", "<Leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
 
--- Git
-map("n", "<Leader>gb", "<cmd>Git blame<CR>", { desc = "Git blame file " })
-
 -- Navigate between nvim & tmux
 map("n", "<C-k>", ":windcmd k<CR>", { desc = "Move focus to the upper window" })
 map("n", "<C-j>", ":windcmd j<CR>", { desc = "Move focus to the lower window" })

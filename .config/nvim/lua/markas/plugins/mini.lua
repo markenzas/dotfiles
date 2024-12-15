@@ -28,8 +28,6 @@ return {
             },
         })
 
-        require("mini.notify").setup({})
-
         require("mini.move").setup({})
 
         require("mini.jump").setup({})
