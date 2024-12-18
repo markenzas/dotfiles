@@ -7,6 +7,7 @@ return {
             "WhoIsSethDaniel/mason-tool-installer.nvim",
             { "j-hui/fidget.nvim", opts = {} },
             { "folke/lazydev.nvim", opts = {} },
+            "saghen/blink.cmp",
         },
         config = function()
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -80,9 +81,6 @@ return {
                     end
                 end,
             })
-
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-            capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
             local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
             for type, icon in pairs(signs) do
@@ -216,7 +214,7 @@ return {
                 handlers = {
                     function(server_name)
                         local server = servers[server_name] or {}
-                        server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+                        server.capabilities = require('blink.cmp').get_lsp_capabilities(server.capabilities)
                         require("lspconfig")[server_name].setup(server)
                     end,
                 },
