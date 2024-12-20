@@ -1,12 +1,14 @@
 return {
     {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000,
+        "rose-pine/neovim",
+        name = "rose-pine",
         init = function()
-            vim.cmd.colorscheme("catppuccin")
-            vim.cmd.hi("comment gui=none")
+            vim.cmd.colorscheme("rose-pine")
         end,
+        opts = {
+            variant = "moon",
+            dark_variant = "moon",
+        },
     },
     {
         "folke/which-key.nvim",
