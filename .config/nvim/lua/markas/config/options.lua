@@ -79,5 +79,8 @@ opt.scrolloff = 10
 opt.termguicolors = true
 opt.background = "dark"
 
+-- Remove tilde from end of buffer
+opt.fillchars = { eob = " " }
+
 -- Backspace
 opt.backspace = "indent,eol,start"

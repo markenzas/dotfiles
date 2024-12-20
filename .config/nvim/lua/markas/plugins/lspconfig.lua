@@ -143,8 +143,8 @@ return {
                 "phpactor",
                 "php-cs-fixer",
                 "prismals",
-                "tailwindcss",
                 "vtsls", -- Typescript
+                "tailwindcss",
                 "vue-language-server", -- Vue
             })
             require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
