@@ -27,9 +27,6 @@ return {
         indent = { enabled = true, indent = { only_current = true } },
         git = { enabled = true },
         gitbrowse = { enabled = true },
-        notifier = {
-            enabled = true,
-        },
     },
     keys = {
         {
