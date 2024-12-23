@@ -2,14 +2,22 @@ return {
     "saghen/blink.cmp",
     lazy = false,
     dependencies = { { "L3MON4D3/LuaSnip", version = "v2.*" }, { "rafamadriz/friendly-snippets" } },
-    version = "v0.*",
+    version = "*",
     opts = {
         keymap = { preset = "default" },
-        appearance = {
-            use_nvim_cmp_as_default = true,
-            nerd_font_variant = "mono",
-        },
         signature = { enabled = true },
+        completion = {
+            keyword = { range = "full" },
+            documentation = { auto_show = true, auto_show_delay_ms = 500 },
+            menu = {
+                draw = {
+                    columns = {
+                        { "label", "label_description", gap = 1 },
+                        { "kind_icon", "kind", gap = 1 },
+                    },
+                },
+            },
+        },
         snippets = {
             expand = function(snippet)
                 require("luasnip").lsp_expand(snippet)
