@@ -30,18 +30,11 @@ map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
--- save file
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
 map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-
-map("n", "<Leader>fm", function()
-  require("conform").format({ lsp_fallback = true })
-end, { desc = "Format Files" })
 
 -- Bufferline
 map("n", "<Leader>bn", "<cmd>enew<CR>", { desc = "Buffer New" })
@@ -60,22 +53,3 @@ map("n", "<C-k>", ":windcmd k<CR>", { desc = "Move focus to the upper window" })
 map("n", "<C-j>", ":windcmd j<CR>", { desc = "Move focus to the lower window" })
 map("n", "<C-h>", ":windcmd h<CR>", { desc = "Move focus to the left window" })
 map("n", "<C-l>", ":windcmd l<CR>", { desc = "Move focus to the right window" })
-
--- Vim Test
-map("n", "<Leader>tt", "<cmd>TestNearest<CR>", { desc = "Test Nearest" })
-map("n", "<Leader>tf", "<cmd>TestFile<CR>", { desc = "Test File" })
-map("n", "<Leader>ts", "<cmd>TestSuite<CR>", { desc = "Test Suite" })
-map("n", "<Leader>tl", "<cmd>TestLast<CR>", { desc = "Test Last" })
-map("n", "<Leader>tv", "<cmd>TestVisit<CR>", { desc = "Test Visit" })
-
--- Noice.nvim
-map("n", "<Leader>nd", "<cmd>NoiceDismiss<CR>", { desc = "Dismiss Noice Message" })
-
--- Refactoring
-map("x", "<Leader>re", "<cmd>Refactor extract <CR>", { desc = "Refactor extract " })
-map("x", "<Leader>rf", "<cmd>Refactor extract_to_file <CR>", { desc = "Refactor extract_to_file " })
-map("x", "<Leader>rv", "<cmd>Refactor extract_var <CR>", { desc = "Refactor extract_var " })
-map({ "n", "x" }, "<Leader>ri", "<cmd>Refactor inline_var <CR>", { desc = "Refactor inline_var" })
-map("n", "<Leader>rI", "<cmd>Refactor inline_func <CR>", { desc = "Refactor inline_func" })
-map("n", "<Leader>rb", "<cmd>Refactor extract_block", { desc = "Refactor extract_block" })
-map("n", "<Leader>rbf", "<cmd>Refactor extract_block_to_file", { desc = "Refactor extract_block_to_file" })

@@ -3,7 +3,6 @@ return {
   priority = 1000,
   lazy = false,
   opts = {
-    dim = { enabled = true },
     dashboard = {
       enabled = true,
       sections = {
@@ -24,7 +23,18 @@ return {
                 ]],
       },
     },
+    input = {
+      enabled = true,
+      icon = " ",
+      icon_hl = "SnacksInputIcon",
+      icon_pos = "left",
+      prompt_pos = "title",
+      win = { style = "input" },
+      expand = true,
+    },
     indent = { enabled = true, indent = { only_current = true } },
+    notifier = { enabled = true },
+    notify = { enabled = true },
     git = { enabled = true },
     gitbrowse = { enabled = true },
   },
@@ -34,21 +44,36 @@ return {
       function()
         Snacks.lazygit()
       end,
-      desc = "Lazygit",
+      desc = "Open Lazygit",
     },
     {
-      "<leader>gB",
+      "<leader>go",
       function()
         Snacks.gitbrowse()
       end,
-      desc = "Git Browse",
+      desc = "[G]it [o]pen file in a browser",
     },
     {
       "<leader>gb",
       function()
         Snacks.git.blame_line()
       end,
-      desc = "Git Blame Line",
+      desc = "[G]it [b]lame Line",
+    },
+    {
+      "<leader>nh",
+      function()
+        Snacks.notifier.show_history()
+      end,
+      desc = "Show [n]otification [h]istory",
+    },
+
+    {
+      "<leader>nd",
+      function()
+        Snacks.notifier.hide()
+      end,
+      desc = "[N]otification [d]ismiss",
     },
   },
 }

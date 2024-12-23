@@ -7,7 +7,6 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
       { "j-hui/fidget.nvim", opts = {} },
       { "folke/lazydev.nvim", opts = {} },
-      "saghen/blink.cmp",
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -27,6 +26,9 @@ return {
           map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
         end,
       })
+
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do
@@ -109,7 +111,7 @@ return {
 
       -- Inlay Hints
       local opts = { noremap = true, silent = true }
-      vim.keymap.set({ "n", "i" }, "gI", function()
+      vim.keymap.set({ "n" }, "gI", function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
       end, opts)
 
@@ -137,7 +139,7 @@ return {
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}
-            server.capabilities = require("blink.cmp").get_lsp_capabilities(server.capabilities)
+            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
             require("lspconfig")[server_name].setup(server)
           end,
         },
