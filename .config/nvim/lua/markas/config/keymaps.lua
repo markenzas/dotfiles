@@ -53,3 +53,6 @@ map("n", "<C-k>", ":windcmd k<CR>", { desc = "Move focus to the upper window" })
 map("n", "<C-j>", ":windcmd j<CR>", { desc = "Move focus to the lower window" })
 map("n", "<C-h>", ":windcmd h<CR>", { desc = "Move focus to the left window" })
 map("n", "<C-l>", ":windcmd l<CR>", { desc = "Move focus to the right window" })
+
+-- Execution of files and plugins
+map("n", "<leader><leader>x", "<cmd>source %<CR>", { desc = "Execute the current file" })
