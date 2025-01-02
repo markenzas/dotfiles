@@ -4,13 +4,9 @@ return {
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-      { "j-hui/fidget.nvim", opts = {} },
-      { "folke/lazydev.nvim", opts = {} },
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
-        group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
         callback = function(event)
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
@@ -43,26 +39,7 @@ return {
               completion = {
                 callSnippet = "Replace",
               },
-              diagnostics = { disable = { "missing-fields" } },
             },
-          },
-        },
-        tailwindcss = {
-          filetypes = {
-            "javascript",
-            "javascriptreact",
-            "typescript",
-            "typescriptreact",
-            "twig",
-            "html",
-            "gohtml",
-            "django-html",
-            "htmldjango",
-            "blade",
-            "astro",
-            "css",
-            "scss",
-            "less",
           },
         },
         volar = {
@@ -122,18 +99,16 @@ return {
         "stylua",
         "clangd",
         "markdownlint",
-        -- Webdev
         "html-lsp",
         "eslint_d",
         "prettierd",
         "phpactor",
         "php-cs-fixer",
         "prismals",
-        "ts_ls", -- Typescript
+        "ts_ls",
         "tailwindcss",
         "vue-language-server", -- Vue
       })
-      require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
       require("mason-lspconfig").setup({
         handlers = {

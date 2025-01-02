@@ -32,7 +32,6 @@ return {
       win = { style = "input" },
       expand = true,
     },
-    indent = { enabled = true, indent = { only_current = true } },
     notifier = { enabled = true },
     notify = { enabled = true },
     git = { enabled = true },
