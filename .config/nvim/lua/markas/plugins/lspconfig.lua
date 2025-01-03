@@ -7,6 +7,9 @@ return {
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
+        vim.lsp.set_log_level("trace"),
+        require("vim.lsp.log").set_format_func(vim.inspect),
+
         callback = function(event)
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
@@ -18,6 +21,7 @@ return {
           map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
           map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
           map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+          map("<leader>lr", "<cmd>LspRestart<CR>", "[L]SP [R]estart")
           map("K", vim.lsp.buf.hover, "Hover Documentation")
           map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
         end,
