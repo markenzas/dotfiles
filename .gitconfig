@@ -10,3 +10,6 @@
 
 [merge]
     conflictstyle = zdiff3
+[user]
+	email = markas.mikas@gmail.com
+	name = Markenzas
