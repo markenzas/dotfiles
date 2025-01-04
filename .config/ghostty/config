@@ -1,0 +1,13 @@
+keybind = super+|=new_split:right
+keybind = super+_=new_split:down
+keybind = super+shift+w=close_window
+keybind = super+f=toggle_fullscreen
+keybind = super+shift+e=equalize_splits
+
+keybind = super+shift+h=goto_split:left
+keybind = super+shift+j=goto_split:bottom
+keybind = super+shift+k=goto_split:top
+keybind = super+shift+l=goto_split:right
+
+keybind = super+shift+n=goto_split:next
+keybind = super+shift+p=goto_split:previous
