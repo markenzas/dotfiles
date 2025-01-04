@@ -12,4 +12,4 @@ alias ll="ls -lah"
 alias vim=nvim
 alias vi=nvim
 
-fastfetch
+neofetch
