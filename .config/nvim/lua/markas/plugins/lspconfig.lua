@@ -1,9 +1,24 @@
+local LspAction = setmetatable({}, {
+  __index = function(_, action)
+    return function()
+      vim.lsp.buf.code_action({
+        apply = true,
+        context = {
+          only = { action },
+          diagnostics = {},
+        },
+      })
+    end
+  end,
+})
+
 return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
@@ -12,18 +27,23 @@ return {
 
         callback = function(event)
           local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
           end
 
           --  To jump back, press <C-t>.
-          map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-          map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-          map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-          map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-          map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-          map("<leader>lr", "<cmd>LspRestart<CR>", "[L]SP [R]estart")
+          map("gd", require("telescope.builtin").lsp_definitions, "Go to Definition")
+          map("gr", require("telescope.builtin").lsp_references, "Go to References")
+          map("gI", require("telescope.builtin").lsp_implementations, "Go to Implementation")
+          map("gD", vim.lsp.buf.declaration, "Go to Declaration")
           map("K", vim.lsp.buf.hover, "Hover Documentation")
-          map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+          map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
+          map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
+          map("<leader>lr", "<cmd>LspRestart<CR>", "LSP Restart")
+
+          map("<leader>co", LspAction["source.organizeImports"], "Organize Imports")
+          map("<leader>ci", LspAction["source.addMissingImports.ts"], "Add missing imports")
+          map("<leader>cu", LspAction["source.removeUnused.ts"], "Remove unused imports")
         end,
       })
 
@@ -75,18 +95,47 @@ return {
             },
           },
         },
-        ts_ls = {
-          init_options = {
-            plugins = {
-              {
-                name = "@vue/typescript-plugin",
-                location = vim.fn.stdpath("data")
-                  .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
-                languages = { "typescript", "javascript", "vue" },
+        vtsls = {
+          tsserver = {
+            init_options = {
+              plugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = vim.fn.stdpath("data")
+                    .. "/mason/packages/vue-language-server/node_modules/@vue/language-server",
+                  languages = { "typescript", "javascript", "vue" },
+                },
+              },
+            },
+            filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "vue" },
+          },
+          settings = {
+            complete_function_calls = true,
+            vtsls = {
+              enableMoveToFileCodeAction = true,
+              autoUseWorkspaceTsdk = true,
+              experimental = {
+                maxInlayHintLength = 30,
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
+              },
+            },
+            typescript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
               },
             },
           },
-          filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "vue" },
         },
       }
 
@@ -109,7 +158,7 @@ return {
         "phpactor",
         "php-cs-fixer",
         "prismals",
-        "ts_ls",
+        "vtsls",
         "tailwindcss",
         "vue-language-server", -- Vue
       })
@@ -122,6 +171,10 @@ return {
             require("lspconfig")[server_name].setup(server)
           end,
         },
+      })
+
+      require("mason-tool-installer").setup({
+        ensure_installed = ensure_installed,
       })
     end,
   },

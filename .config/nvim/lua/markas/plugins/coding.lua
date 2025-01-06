@@ -24,6 +24,12 @@ local vueGotoDefinitionOpts = {
 
 return {
   {
+    "folke/ts-comments.nvim",
+    event = "VeryLazy",
+    opts = {},
+    enabled = vim.fn.has("nvim-0.10") == 1,
+  },
+  {
     "github/copilot.vim",
     event = "VeryLazy",
     config = function() end,

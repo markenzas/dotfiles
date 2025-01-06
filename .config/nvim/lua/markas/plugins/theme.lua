@@ -10,19 +10,37 @@ return {
   },
   {
     "folke/which-key.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
     event = "VeryLazy",
-    opts = {},
-    keys = {
-      { "<leader>b", group = "[B]uffer" },
-      { "<leader>c", group = "[C]ode" },
-      { "<leader>d", group = "[D]ocument" },
-      { "<leader>e", group = "[E]xplorer" },
-      { "<leader>f", group = "[F]ind" },
-      { "<leader>g", group = "[G]it" },
-      { "<leader>r", group = "[R]ename" },
-      { "<leader>t", group = "[T]est" },
-      { "<leader>w", group = "[W]orkspace" },
-      { "<leader>x", group = "[X]trouble" },
+    opts = {
+      preset = "helix",
+      spec = {
+        { "<leader>c", group = "Code" },
+        { "<leader>d", group = "Document" },
+        { "<leader>e", group = "Explorer" },
+        { "<leader>f", group = "Find" },
+        { "<leader>g", group = "Git" },
+        { "<leader>l", group = "LSP" },
+        { "<leader>x", group = "Trouble" },
+        { "gs", group = "Surround" },
+        {
+          "<leader>b",
+          group = "Buffer",
+          expand = function()
+            return require("which-key.extras").expand.buf()
+          end,
+        },
+        {
+          "<leader>w",
+          group = "Windows",
+          proxy = "<c-w>",
+          expand = function()
+            return require("which-key.extras").expand.win()
+          end,
+        },
+      },
     },
   },
   {
