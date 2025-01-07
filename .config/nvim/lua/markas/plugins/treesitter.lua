@@ -17,6 +17,7 @@ return {
         "markdown",
         "vim",
         "vimdoc",
+        "gdscript",
 
         -- NOTE: Webdev
         "html",
