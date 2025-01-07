@@ -7,6 +7,9 @@ return {
       vim.cmd.colorscheme("catppuccin")
       vim.cmd.hi("comment gui=none")
     end,
+    opts = {
+      transparent_background = true,
+    },
   },
   {
     "folke/which-key.nvim",
@@ -163,6 +166,18 @@ return {
     config = function()
       require("bufferline").setup({
         options = {
+          diagnostics = "nvim_lsp",
+          diagnostics_indicator = function(_, _, diag)
+            local icons = {
+              Error = " ",
+              Warn = " ",
+              Hint = " ",
+              Info = " ",
+            }
+            local ret = (diag.error and icons.Error .. diag.error .. " " or "")
+              .. (diag.warning and icons.Warn .. diag.warning or "")
+            return vim.trim(ret)
+          end,
           offsets = {
             {
               filetype = "NvimTree",
@@ -174,5 +189,30 @@ return {
         },
       })
     end,
+  },
+  {
+    "folke/noice.nvim",
+    opts = {
+      cmdline = {
+        enabled = true,
+        view = "cmdline_popup",
+      },
+      messages = {
+        enabled = false,
+      },
+      popupmenu = {
+        enabled = true,
+      },
+      signature = {
+        enabled = true,
+      },
+      presets = {
+        bottom_search = false,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = false,
+        lsp_doc_border = false,
+      },
+    },
   },
 }

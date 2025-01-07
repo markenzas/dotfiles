@@ -12,4 +12,5 @@ keybind = ctrl+l=goto_split:right
 keybind = super+shift+n=goto_split:next
 keybind = super+shift+p=goto_split:previous
 
-# background = 2e2e2e
+background-opacity = 0.9
+background-blur-radius = 20
