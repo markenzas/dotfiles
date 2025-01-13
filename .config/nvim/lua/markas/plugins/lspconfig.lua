@@ -154,6 +154,7 @@ return {
         "clangd",
         "markdownlint",
         "html-lsp",
+        "cssls",
         "eslint_d",
         "prettierd",
         "phpactor",
