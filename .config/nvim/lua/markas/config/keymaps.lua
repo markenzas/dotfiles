@@ -56,3 +56,8 @@ map("n", "<C-l>", ":windcmd l<CR>", { desc = "Move focus to the right window" })
 
 -- Execution of files and plugins
 map("n", "<leader>cx", "<cmd>source %<CR>", { desc = "[C]ode [E]xecute" })
+
+-- Neotest
+map("n", "<leader>tn", "<cmd>Neotest run run<CR>", { desc = "Test Nearest" })
+map("n", "<leader>tf", "<cmd>Neotest run file<CR>", { desc = "Test File" })
+map("n", "<leader>ts", "<cmd>Neotest summary toggle<CR>", { desc = "Test Summary" })

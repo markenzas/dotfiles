@@ -22,7 +22,7 @@ return {
     },
     config = function()
       vim.api.nvim_create_autocmd("LspAttach", {
-        vim.lsp.set_log_level("trace"),
+        vim.lsp.set_log_level("off"),
         require("vim.lsp.log").set_format_func(vim.inspect),
 
         callback = function(event)
@@ -40,6 +40,7 @@ return {
           map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
           map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
           map("<leader>lr", "<cmd>LspRestart<CR>", "LSP Restart")
+          map("<leader>lf", "<cmd>LspInfo<CR>", "LSP Info")
 
           map("<leader>co", LspAction["source.organizeImports"], "Organize Imports")
           map("<leader>ci", LspAction["source.addMissingImports.ts"], "Add missing imports")

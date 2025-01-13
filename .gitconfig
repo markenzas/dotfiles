@@ -13,3 +13,5 @@
 [user]
 	email = markas.mikas@gmail.com
 	name = Markenzas
+[init]
+	defaultBranch = master

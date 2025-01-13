@@ -15,4 +15,4 @@ alias vi=nvim
 alias lzg=lazygit
 alias lzd=lazydocker
 
-neofetch
+fastfetch
