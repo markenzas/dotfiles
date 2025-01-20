@@ -14,5 +14,6 @@ alias vim=nvim
 alias vi=nvim
 alias lzg=lazygit
 alias lzd=lazydocker
+alias sail="./vendor/bin/sail"
 
 fastfetch

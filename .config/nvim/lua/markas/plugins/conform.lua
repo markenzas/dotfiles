@@ -16,6 +16,7 @@ return {
           json = with_prettier,
           lua = { "stylua" },
           markdown = with_prettier,
+          php = { "pint" },
           typescript = with_prettier,
           typescriptreact = with_prettier,
           vue = with_prettier,

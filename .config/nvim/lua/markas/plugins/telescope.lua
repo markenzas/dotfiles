@@ -25,13 +25,21 @@ return { -- Fuzzy Finder (files, etc)
         },
       },
       live_grep = {
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = {
+          "node_modules",
+          "vendor",
+          "storage/logs",
+        },
         additional_args = function(_)
           return { "--hidden" }
         end,
       },
       find_files = {
-        file_ignore_patterns = { "node_modules" },
+        file_ignore_patterns = {
+          "node_modules",
+          "vendor",
+          "storage/logs",
+        },
         hidden = true,
       },
     })

@@ -158,7 +158,7 @@ return {
         "eslint_d",
         "prettierd",
         "phpactor",
-        "php-cs-fixer",
+        "pint",
         "prismals",
         "vtsls",
         "tailwindcss",
