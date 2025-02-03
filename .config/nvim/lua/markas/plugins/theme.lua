@@ -1,15 +1,16 @@
 return {
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "folke/tokyonight.nvim",
+    name = "tokyonight",
     priority = 1000,
     init = function()
-      vim.cmd.colorscheme("catppuccin")
+      vim.cmd.colorscheme("tokyonight-night")
       vim.cmd.hi("comment gui=none")
     end,
-    opts = {
-      transparent_background = true,
-    },
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
   },
   {
     "folke/which-key.nvim",
@@ -69,16 +70,14 @@ return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {},
-    -- dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
   },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local lualine = require("lualine")
-      local lazy_status = require("lazy.status") -- to configure lazy pending updates count
+      local lazy_status = require("lazy.status")
 
       local colors = {
         blue = "#65D1FF",

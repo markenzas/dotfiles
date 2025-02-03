@@ -112,4 +112,29 @@ return {
       })
     end,
   },
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    lazy = false,
+    build = "make",
+    opts = {
+      provider = "copilot",
+      behaviour = {
+        auto_suggestions = false,
+      },
+      suggestion = {
+        debounce = 1500,
+      },
+    },
+    dependencies = {
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
+    },
+  },
 }

@@ -14,5 +14,4 @@ keybind = super+shift+p=goto_split:previous
 
 background-opacity = 0.9
 background-blur-radius = 20
-window-decoration = false
 font-size = 12

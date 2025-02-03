@@ -99,3 +99,6 @@ opt.fillchars = { eob = " " }
 
 -- Backspace
 opt.backspace = "indent,eol,start"
+
+-- views can only be fully collapsed with the global statusline
+opt.laststatus = 3
