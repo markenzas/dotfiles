@@ -40,7 +40,7 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 map("n", "<Leader>bn", "<cmd>enew<CR>", { desc = "Buffer New" })
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Buffer Goto next" })
 map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Buffer Goto prev" })
-map("n", "<Leader>bx", "<cmd>bd<CR>", { desc = "Buffer Close" })
+map("n", "<Leader>bd", "<cmd>bd<CR>", { desc = "Buffer Close" })
 
 -- Window management
 map("n", "<Leader>sv", "<C-w>v", { desc = "Split window vertically" })
