@@ -31,10 +31,6 @@ return {
           end
 
           --  To jump back, press <C-t>.
-          map("gd", require("telescope.builtin").lsp_definitions, "Go to Definition")
-          map("gr", require("telescope.builtin").lsp_references, "Go to References")
-          map("gI", require("telescope.builtin").lsp_implementations, "Go to Implementation")
-          map("gD", vim.lsp.buf.declaration, "Go to Declaration")
           map("K", vim.lsp.buf.hover, "Hover Documentation")
 
           map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
