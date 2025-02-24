@@ -13,10 +13,11 @@ return {
       },
     })
 
-    -- Open parent dir in current window
-    vim.keymap.set("n", "<space>-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-
-    -- Open parent dir in floating window
-    vim.keymap.set("n", "-", require("oil").toggle_float)
+    vim.api.nvim_set_keymap(
+      "n",
+      "<leader>e",
+      [[<cmd>lua require("oil").toggle_float()<CR>]],
+      { noremap = true, silent = true, desc = "Toggle Oil float" }
+    )
   end,
 }
