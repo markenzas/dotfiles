@@ -38,7 +38,7 @@ return {
         "html",
         "css",
         "blade",
-        "php_only",
+        "php",
         "python",
         "dockerfile",
         "graphql",

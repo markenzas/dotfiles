@@ -186,11 +186,13 @@ return {
       "nvim-treesitter/nvim-treesitter",
       -- Adapters
       "marilari88/neotest-vitest",
+      "olimorris/neotest-phpunit",
     },
     config = function()
       require("neotest").setup({
         adapters = {
           require("neotest-vitest"),
+          require("neotest-phpunit"),
         },
       })
     end,

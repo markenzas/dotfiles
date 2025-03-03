@@ -25,16 +25,16 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+map("n", "<C-Left>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+map("n", "<C-Right>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+map("n", "<C-Down>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+map("n", "<C-Up>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Resize window using <ctrl> arrow keys
-map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+map("n", "<S-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<S-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<S-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<S-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Bufferline
 map("n", "<Leader>bn", "<cmd>enew<CR>", { desc = "Buffer New" })
@@ -47,12 +47,6 @@ map("n", "<Leader>sv", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<Leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 map("n", "<Leader>se", "<C-w>=", { desc = "Make splits equal size" })
 map("n", "<Leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
-
--- Navigate between nvim & tmux & ghostty
-map("n", "<C-k>", ":windcmd k<CR>", { desc = "Move focus to the upper window" })
-map("n", "<C-j>", ":windcmd j<CR>", { desc = "Move focus to the lower window" })
-map("n", "<C-h>", ":windcmd h<CR>", { desc = "Move focus to the left window" })
-map("n", "<C-l>", ":windcmd l<CR>", { desc = "Move focus to the right window" })
 
 -- Execution of files and plugins
 map("n", "<leader>cx", "<cmd>source %<CR>", { desc = "[C]ode [E]xecute" })
