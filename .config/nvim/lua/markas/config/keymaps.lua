@@ -33,8 +33,8 @@ map("n", "<C-Up>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 -- Resize window using <ctrl> arrow keys
 map("n", "<S-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
 map("n", "<S-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-map("n", "<S-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-map("n", "<S-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+map("n", "<S-Right>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<S-Left>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Bufferline
 map("n", "<Leader>bn", "<cmd>enew<CR>", { desc = "Buffer New" })
@@ -46,7 +46,7 @@ map("n", "<Leader>bd", "<cmd>bd<CR>", { desc = "Buffer Close" })
 map("n", "<Leader>sv", "<C-w>v", { desc = "Split window vertically" })
 map("n", "<Leader>sh", "<C-w>s", { desc = "Split window horizontally" })
 map("n", "<Leader>se", "<C-w>=", { desc = "Make splits equal size" })
-map("n", "<Leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+map("n", "<Leader>sd", "<cmd>close<CR>", { desc = "Close current split" })
 
 -- Execution of files and plugins
 map("n", "<leader>cx", "<cmd>source %<CR>", { desc = "[C]ode [E]xecute" })

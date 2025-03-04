@@ -170,14 +170,14 @@ return {
       desc = "Commands",
     },
     {
-      "<leader>sd",
+      "<leader>fd",
       function()
         Snacks.picker.diagnostics()
       end,
       desc = "Diagnostics",
     },
     {
-      "<leader>sh",
+      "<leader>fh",
       function()
         Snacks.picker.help()
       end,

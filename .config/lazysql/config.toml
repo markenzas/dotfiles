@@ -1,0 +1,15 @@
+[application]
+DefaultPageSize = 300
+DisableSidebar = false
+
+[[database]]
+Name = 'localhost'
+URL = 'postgresql://sail:password@localhost/laravel?sslmode=disable'
+Provider = 'postgres'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'laravel'
+URLParams = ''
+Commands = []
