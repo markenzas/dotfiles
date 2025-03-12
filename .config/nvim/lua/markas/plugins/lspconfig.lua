@@ -136,11 +136,7 @@ return {
         },
       }
 
-      -- Inlay Hints
-      local opts = { noremap = true, silent = true }
-      vim.keymap.set({ "n" }, "gI", function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-      end, opts)
+      vim.lsp.inlay_hint.enable(true)
 
       require("mason").setup()
 

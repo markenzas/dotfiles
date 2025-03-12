@@ -1,5 +1,6 @@
 set -g fish_greeting
 set -Ux XMODIFIERS '@im=fcitx'
+set -Ux BROWSER '/mnt/c/Program files/BraveSoftware/Brave-Browser/Application/brave.exe'
 
 if status is-interactive
     # Commands to run in interactive sessions can go here
