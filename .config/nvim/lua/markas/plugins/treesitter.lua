@@ -33,6 +33,7 @@ return {
         "markdown",
         "vim",
         "vimdoc",
+        "go",
 
         -- NOTE: Webdev
         "html",

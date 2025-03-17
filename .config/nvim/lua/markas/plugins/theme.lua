@@ -7,6 +7,9 @@ return {
       vim.cmd.colorscheme("tokyonight-night")
       vim.cmd.hi("comment gui=none")
     end,
+    opts = {
+      transparent = true,
+    },
   },
   {
     "rose-pine/neovim",

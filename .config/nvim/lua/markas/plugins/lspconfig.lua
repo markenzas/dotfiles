@@ -155,6 +155,7 @@ return {
         "vtsls",
         "tailwindcss",
         "vue-language-server", -- Vue
+        "gopls",
       })
 
       require("mason-lspconfig").setup({
