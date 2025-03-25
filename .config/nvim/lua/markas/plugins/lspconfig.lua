@@ -26,6 +26,13 @@ return {
         require("vim.lsp.log").set_format_func(vim.inspect),
 
         callback = function(event)
+          for _, client in pairs((vim.lsp.get_clients({}))) do
+            if client.name == "tailwindcss" then
+              client.server_capabilities.completionProvider.triggerCharacters =
+                { '"', "'", "`", ".", "(", "[", "!", "/", ":" }
+            end
+          end
+
           local map = function(keys, func, desc)
             vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
           end
@@ -62,6 +69,9 @@ return {
               },
             },
           },
+        },
+        tailwindcss = {
+          filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
         },
         volar = {
           init_options = {
@@ -149,11 +159,10 @@ return {
         "cssls",
         "eslint_d",
         "prettierd",
-        "phpactor",
         "pint",
+        "phpactor",
         "prismals",
         "vtsls",
-        "tailwindcss",
         "vue-language-server", -- Vue
         "gopls",
       })
