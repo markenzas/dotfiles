@@ -75,6 +75,23 @@ return {
           filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
         },
         volar = { "vue" },
+        gopls = {
+          settings = {
+            gopls = {
+              completeUnimported = true,
+              usePlaceholders = true,
+              analyses = {
+                unusedparams = true,
+              },
+              ["ui.inlayhint.hints"] = {
+                compositeLiteralFields = true,
+                constantValues = true,
+                parameterNames = true,
+                rangeVariableTypes = true,
+              },
+            },
+          },
+        },
       }
 
       vim.lsp.inlay_hint.enable(true)
