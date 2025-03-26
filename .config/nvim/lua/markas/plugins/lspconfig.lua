@@ -20,7 +20,7 @@ return {
     ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
     config = function()
       require("typescript-tools").setup({
-        on_attach = function(client, bufnr)
+        on_attach = function(client, _)
           client.server_capabilities.documentFormattingProvider = false
           client.server_capabilities.documentRangeFormattingProvider = false
         end,
@@ -74,7 +74,6 @@ return {
         tailwindcss = {
           filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact" },
         },
-        volar = { "vue" },
         gopls = {
           settings = {
             gopls = {
@@ -110,8 +109,6 @@ return {
         "pint",
         "phpactor",
         "prismals",
-        "vtsls",
-        "vue-language-server", -- Vue
         "gopls",
       })
 
