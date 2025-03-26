@@ -1,79 +1,91 @@
-return { -- Autocompletion
-  "hrsh7th/nvim-cmp",
-  event = "InsertEnter",
-  dependencies = {
-    {
-      "L3MON4D3/LuaSnip",
-      build = (function()
-        if vim.fn.has("win32") == 1 or vim.fn.executable("make") == 0 then
-          return
-        end
-        return "make install_jsregexp"
-      end)(),
-      dependencies = {
-        {
-          "rafamadriz/friendly-snippets",
-          config = function()
-            local js_ts_files =
-              { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" }
-            for _, value in ipairs(js_ts_files) do
-              require("luasnip").filetype_extend(value, { "html" })
+return {
+  {
+    "saghen/blink.cmp",
+    dependencies = { "rafamadriz/friendly-snippets", "onsails/lspkind.nvim" },
+    version = "1.*",
+    opts = {
+      -- 'default' (recommended) for mappings similar to built-in completions (C-y to accept)
+      -- 'super-tab' for mappings similar to vscode (tab to accept)
+      -- 'enter' for enter to accept
+      -- 'none' for no mappings
+      --
+      -- All presets have the following mappings:
+      -- C-space: Open menu or open docs if already open
+      -- C-n/C-p or Up/Down: Select next/previous item
+      -- C-e: Hide menu
+      -- C-k: Toggle signature help (if signature.enabled = true)
+      --
+      -- See :h blink-cmp-config-keymap for defining your own keymap
+      keymap = { preset = "default" },
+
+      appearance = {
+        -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- Adjusts spacing to ensure icons are aligned
+        nerd_font_variant = "mono",
+      },
+
+      completion = {
+        accept = {
+          auto_brackets = {
+            enabled = true,
+          },
+        },
+        documentation = { auto_show = true },
+        menu = {
+          border = "rounded",
+
+          cmdline_position = function()
+            if vim.g.ui_cmdline_pos ~= nil then
+              local pos = vim.g.ui_cmdline_pos -- (1, 0)-indexed
+              return { pos[1] - 1, pos[2] }
             end
-            require("luasnip.loaders.from_vscode").lazy_load()
+            local height = (vim.o.cmdheight == 0) and 1 or vim.o.cmdheight
+            return { vim.o.lines - height, 0 }
           end,
+
+          draw = {
+            columns = {
+              { "kind_icon", "label", gap = 1 },
+              { "kind" },
+            },
+            components = {
+              kind_icon = {
+                text = function(item)
+                  local kind = require("lspkind").symbol_map[item.kind] or ""
+                  return kind .. " "
+                end,
+                highlight = "CmpItemKind",
+              },
+              label = {
+                text = function(item)
+                  return item.label
+                end,
+                highlight = "CmpItemAbbr",
+              },
+              kind = {
+                text = function(item)
+                  return item.kind
+                end,
+                highlight = "CmpItemKind",
+              },
+            },
+          },
         },
       },
-    },
-    "saadparwaiz1/cmp_luasnip",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-path",
-    "nvim-tree/nvim-web-devicons",
-    "onsails/lspkind.nvim",
-  },
-  config = function()
-    local cmp = require("cmp")
-    local luasnip = require("luasnip")
-    luasnip.config.setup({})
 
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-      completion = { completeopt = "menu,menuone,preview,noselect" },
-      mapping = cmp.mapping.preset.insert({
-        -- Scroll the documentation window [b]ack / [f]orward
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        -- Accept ([y]es) the completion.
-        --  This will auto-import if your LSP supports it.
-        --  This will expand snippets if the LSP sent a snippet.
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-Space>"] = cmp.mapping.complete(),
-      }),
+      -- Default list of enabled providers defined so that you can extend it
+      -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        { name = "nvim_lsp", group_index = 2 },
-        { name = "luasnip", group_index = 2 },
-        { name = "buffer", group_index = 2 },
-        { name = "path", group_index = 2 },
+        default = { "lsp", "path", "snippets", "buffer" },
       },
-      formatting = {
-        expandable_indicator = true,
-        fields = { "abbr", "kind", "menu" },
-        format = function(entry, vim_item)
-          local lspkind = require("lspkind")
-          if vim.tbl_contains({ "path" }, entry.source.name) then
-            local icon, hl_group = require("nvim-web-devicons").get_icon(entry.completion_item.label)
-            if icon then
-              vim_item.kind = icon
-              vim_item.kind_hl_group = hl_group
-              return vim_item
-            end
-          end
-          return lspkind.cmp_format({ with_text = false })(entry, vim_item)
-        end,
-      },
-    })
-  end,
+
+      -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+      -- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+      -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+      --
+      -- See the fuzzy documentation for more information
+      fuzzy = { implementation = "prefer_rust_with_warning" },
+    },
+    opts_extend = { "sources.default" },
+  },
 }

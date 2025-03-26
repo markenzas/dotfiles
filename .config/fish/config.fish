@@ -19,5 +19,7 @@ alias lzg=lazygit
 alias lzd=lazydocker
 alias lzs=lazysql
 alias sail="./vendor/bin/sail"
+alias dcu="docker-compose up -d"
+alias dcd="docker-compose down"
 
 fastfetch
