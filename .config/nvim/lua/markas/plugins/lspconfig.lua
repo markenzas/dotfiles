@@ -1,18 +1,13 @@
-local LspAction = setmetatable({}, {
-  __index = function(_, action)
-    return function()
-      vim.lsp.buf.code_action({
-        apply = true,
-        context = {
-          only = { action },
-          diagnostics = {},
-        },
-      })
-    end
-  end,
-})
-
 return {
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
   {
     "pmizio/typescript-tools.nvim",
     dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -125,52 +120,6 @@ return {
 
       require("mason-tool-installer").setup({
         ensure_installed = ensure_installed,
-      })
-
-      vim.api.nvim_create_autocmd("LspAttach", {
-        vim.lsp.set_log_level("off"),
-        require("vim.lsp.log").set_format_func(vim.inspect),
-
-        callback = function(event)
-          -- Bug fix for tailwindcss completion LSP crashes
-          for _, client in pairs((vim.lsp.get_clients({}))) do
-            if client.name == "tailwindcss" then
-              client.server_capabilities.completionProvider.triggerCharacters =
-                { '"', "'", "`", ".", "(", "[", "!", "/", ":" }
-            end
-          end
-
-          local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = event.buf, desc = desc })
-          end
-
-          --  To jump back, press <C-t>.
-          map("K", vim.lsp.buf.hover, "Hover Documentation")
-
-          map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
-          map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
-          map("<leader>lr", "<cmd>LspRestart<CR>", "LSP Restart")
-          map("<leader>lf", "<cmd>LspInfo<CR>", "LSP Info")
-
-          map("<leader>co", LspAction["source.organizeImports"], "Organize Imports")
-          map("<leader>ci", LspAction["source.addMissingImports.ts"], "Add missing imports")
-          map("<leader>cu", LspAction["source.removeUnused.ts"], "Remove unused imports")
-
-          local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-            local highlight_group = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
-            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-              buffer = event.buf,
-              group = highlight_group,
-              callback = vim.lsp.buf.document_highlight,
-            })
-            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-              buffer = event.buf,
-              group = highlight_group,
-              callback = vim.lsp.buf.clear_references,
-            })
-          end
-        end,
       })
     end,
   },
