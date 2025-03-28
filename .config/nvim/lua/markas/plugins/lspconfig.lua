@@ -9,36 +9,6 @@ return {
     },
   },
   {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-    ft = { "javascript", "javascriptreact", "typescript", "typescriptreact", "vue" },
-    config = function()
-      require("typescript-tools").setup({
-        on_attach = function(client, _)
-          client.server_capabilities.documentFormattingProvider = false
-          client.server_capabilities.documentRangeFormattingProvider = false
-        end,
-        filetypes = {
-          "javascript",
-          "javascriptreact",
-          "typescript",
-          "typescriptreact",
-          "vue",
-        },
-        settings = {
-          tsserver_plugins = {
-            "@vue/typescript-plugin",
-          },
-          jsx_close_tag = {
-            enable = true,
-            filetypes = { "javascriptreact", "typescriptreact" },
-          },
-        },
-      })
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
     dependencies = {
       "williamboman/mason.nvim",
@@ -86,6 +56,28 @@ return {
             },
           },
         },
+        vtsls = {
+          filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+          settings = {
+            vtsls = { tsserver = { globalPlugins = {} } },
+          },
+          before_init = function(params, config)
+            local result = vim
+              .system({ "npm", "query", "#vue" }, { cwd = params.workspaceFolders[1].name, text = true })
+              :wait()
+            if result.stdout ~= "[]" then
+              local vuePluginConfig = {
+                name = "@vue/typescript-plugin",
+                location = require("mason-registry").get_package("vue-language-server"):get_install_path()
+                  .. "/node_modules/@vue/language-server",
+                languages = { "vue" },
+                configNamespace = "typescript",
+                enableForWorkspaceTypeScriptVersions = true,
+              }
+              table.insert(config.settings.vtsls.tsserver.globalPlugins, vuePluginConfig)
+            end
+          end,
+        },
       }
 
       vim.lsp.inlay_hint.enable(true)
@@ -105,6 +97,8 @@ return {
         "phpactor",
         "prismals",
         "gopls",
+        "vtsls",
+        "vue-language-server",
       })
 
       require("mason-lspconfig").setup({
@@ -112,7 +106,7 @@ return {
           function(server_name)
             local lspconfig = require("lspconfig")
             local opts = servers[server_name] or {}
-            opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
+            opts.lspcapabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
             lspconfig[server_name].setup(opts)
           end,
         },
