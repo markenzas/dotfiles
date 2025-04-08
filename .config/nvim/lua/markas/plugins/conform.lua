@@ -10,6 +10,9 @@ return {
       conform.setup({
         formatters_by_ft = {
           css = with_prettier,
+          scss = with_prettier,
+          less = with_prettier,
+          sass = with_prettier,
           html = with_prettier,
           javascript = with_prettier,
           javascriptreact = with_prettier,
