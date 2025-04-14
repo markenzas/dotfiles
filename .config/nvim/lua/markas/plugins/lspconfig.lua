@@ -59,7 +59,45 @@ return {
         vtsls = {
           filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
           settings = {
-            vtsls = { tsserver = { globalPlugins = {} } },
+            complete_function_calls = true,
+            vtsls = {
+              tsserver = { globalPlugins = {} },
+              enableMoveToFileCodeAction = true,
+              autoUseWorkspaceTsdk = true,
+              experimental = {
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
+              },
+            },
+            javascript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
+            typescript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
           },
           before_init = function(params, config)
             local result = vim
@@ -79,6 +117,7 @@ return {
           end,
         },
       }
+      servers.vtsls.settings["js/ts"] = { implicitProjectConfig = { checkJs = true } }
 
       vim.lsp.inlay_hint.enable(true)
       vim.diagnostic.config({ virtual_text = true })
