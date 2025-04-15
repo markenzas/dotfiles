@@ -10,14 +10,22 @@
 
 [merge]
     conflictstyle = zdiff3
+
 [user]
 	email = markas.mikas@gmail.com
-	name = Markenzas
+	name = Markas Mikalauskas
+
 [init]
 	defaultBranch = master
+
 [credential "https://github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+
+[alias]
+	lol = log --oneline --decorate
+	graph = log --oneline --graph --decorate
