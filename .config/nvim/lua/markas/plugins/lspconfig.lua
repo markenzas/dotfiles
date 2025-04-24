@@ -119,7 +119,6 @@ return {
       }
       servers.vtsls.settings["js/ts"] = { implicitProjectConfig = { checkJs = true } }
 
-      vim.lsp.inlay_hint.enable(true)
       vim.diagnostic.config({ virtual_text = true })
 
       require("mason").setup()
