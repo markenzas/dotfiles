@@ -140,15 +140,20 @@ return {
         "vue-language-server",
       })
 
+      local lspconfig = require("lspconfig")
+
       require("mason-lspconfig").setup({
         handlers = {
           function(server_name)
-            local lspconfig = require("lspconfig")
             local opts = servers[server_name] or {}
             opts.lspcapabilities = vim.tbl_deep_extend("force", {}, capabilities, opts.capabilities or {})
             lspconfig[server_name].setup(opts)
           end,
         },
+      })
+
+      lspconfig.gdscript.setup({
+        cmd = { "godot-wsl-lsp", "--useMirroredNetworking", "--host", "127.0.0.1" },
       })
 
       require("mason-tool-installer").setup({

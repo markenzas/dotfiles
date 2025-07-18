@@ -34,6 +34,7 @@ return {
         "vim",
         "vimdoc",
         "go",
+        "gdscript",
 
         -- NOTE: Webdev
         "html",
