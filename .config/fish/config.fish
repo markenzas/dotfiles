@@ -21,6 +21,8 @@ alias lzs=lazysql
 alias sail="./vendor/bin/sail"
 alias dcu="docker-compose up -d"
 alias dcd="docker-compose down"
+alias wbrr="pkill waybar && waybar & disown && clear"
+alias godot="godot --display-driver wayland"
 
 fastfetch
 

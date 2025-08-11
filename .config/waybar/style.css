@@ -1,0 +1,188 @@
+/* -- Global rules -- */
+* {
+  border: none;
+  font-family: "JetbrainsMono Nerd Font";
+  font-size: 15px;
+  min-height: 10px;
+}
+
+window#waybar {
+  background: rgba(34, 36, 54, 0.6);
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+/* - Genera rules for visible modules -- */
+#custom-archicon,
+#battery,
+#bluetooth,
+#clock,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#idle_inhibitor,
+#pulseaudio,
+#pulseaudio_slider,
+#network,
+#language {
+  color: #161320;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: none;
+}
+
+/* Separation to the left */
+#custom-archicon,
+#cpu,
+#idle_inhibitor {
+  margin-left: 5px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+/* Separation to the rigth */
+#clock,
+#temperature,
+#language {
+  margin-right: 5px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* -- Specific styles -- */
+
+/* Modules left */
+#custom-archicon {
+  font-size: 20px;
+  color: #89b4fa;
+  background: #161320;
+  padding-right: 17px;
+}
+
+#clock {
+  background: #abe9b3;
+}
+
+#cpu {
+  background: #96cdfb;
+}
+
+#memory {
+  background: #ddb6f2;
+}
+
+#disk {
+  background: #f5c2e7;
+}
+
+#temperature {
+  background: #f8bd96;
+}
+
+/* Modules center */
+#workspaces {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  margin: 6px 5px;
+  padding: 0px 6px;
+}
+
+#workspaces button {
+  color: #b5e8e0;
+  background: transparent;
+  padding: 4px 4px;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+#workspaces button.occupied {
+  color: #a6e3a1;
+}
+
+#workspaces button.active {
+  color: #89b4fa;
+  text-shadow: 0 0 4px #abe9b3;
+}
+
+#workspaces button:hover {
+  color: #89b4fa;
+}
+
+#workspaces button.active:hover {
+}
+
+/* Modules right */
+#taskbar {
+  background: transparent;
+  border-radius: 10px;
+  padding: 0px 5px;
+  margin: 6px 5px;
+}
+
+#taskbar button {
+  padding: 0px 5px;
+  margin: 0px 3px;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+#taskbar button.active {
+  background: rgba(34, 36, 54, 0.5);
+}
+
+#taskbar button:hover {
+  background: rgba(34, 36, 54, 0.5);
+}
+
+#idle_inhibitor {
+  background: #b5e8e0;
+  padding-right: 15px;
+}
+
+#pulseaudio {
+  color: #1a1826;
+  background: #f5e0dc;
+}
+
+#pulseaudio_slider {
+  color: #1a1826;
+  background: #e8a2af;
+}
+
+#network {
+  background: #cba6f7;
+  padding-right: 13px;
+}
+
+#battery {
+  background: #c2dbb8;
+  padding-right: 13px;
+  border-left: 10px;
+  border-right: 10px;
+}
+
+#bluetooth {
+  background: #5f69d4;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#language {
+  background: #a6e3a1;
+  padding-right: 15px;
+}
+
+/* === Optional animation === */
+@keyframes blink {
+  to {
+    background-color: #bf616a;
+    color: #b5e8e0;
+  }
+}
