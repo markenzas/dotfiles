@@ -125,7 +125,8 @@
     "tooltip-format": " {ifname} via {gwaddr}",
     "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50
+    "max-length": 50,
+    "on-click": "nm-connection-editor"
   },
   "bluetooth": {
     "format-on": "",
