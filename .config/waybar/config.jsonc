@@ -13,77 +13,73 @@
     "cpu",
     "memory",
     "disk",
-    "temperature"
+    "temperature",
   ],
-  "modules-center": [
-    "hyprland/workspaces"
-  ],
+  "modules-center": ["hyprland/workspaces"],
   "modules-right": [
-    "battery",
+    "tray",
     "wlr/taskbar",
+    "battery",
     "idle_inhibitor",
     "pulseaudio_slider",
     "pulseaudio",
     "network",
     "bluetooth",
-    "hyprland/language"
+    "hyprland/language",
   ],
   /* === Modules Left === */
   "custom/archicon": {
     "format": "",
     "on-click": "wofi --show drun",
-    "tooltip": false
+    "tooltip": false,
   },
   "clock": {
     "timezone": "Europe/Vilnius",
     "format": "{:%H:%M  %d, %m}",
     "tooltip-format": "{calendar}",
     "calendar": {
-      "mode": "month"
-    }
+      "mode": "month",
+    },
   },
   "cpu": {
     "format": "{usage}% ",
     "tooltip": true,
-    "tooltip-format": "CPU: {usage}%\nNúcleos: {cores}"
+    "tooltip-format": "CPU: {usage}%\nNúcleos: {cores}",
   },
   "memory": {
     "format": "{}% 󰍛",
     "tooltip": true,
-    "tooltip-format": "RAM: {used} / {total} ({percentage}%)"
+    "tooltip-format": "RAM: {used} / {total} ({percentage}%)",
   },
   "disk": {
     "format": "{percentage_free}% ",
     "tooltip": true,
-    "tooltip-format": "Disk: {free} / {total} ({percentage_free}%)"
+    "tooltip-format": "Disk: {free} / {total} ({percentage_free}%)",
   },
   "temperature": {
     "format": "{temperatureC}°C {icon}",
     "tooltip": true,
     "tooltip-format": "Temperature: {temperatureC}°C",
-    "format-icons": [
-      ""
-    ]
+    "format-icons": [""],
   },
   /* === Modules Center === */
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
       "default": "",
-      "active": ""
+      "active": "",
     },
     "persistent-workspaces": {
-      "*": 2
+      "*": 2,
     },
     "disable-scroll": true,
     "all-outputs": true,
-    "show-special": true
+    "show-special": true,
   },
   /* === Modules Right === */
-  "battery": {
-    "bat": "BAT1",
-    "format": "{capacity}% {icon}",
-		"format-icons": ["", "", "", "", ""]
+  "tray": {
+    "icon-size": 16,
+    "padding": 2,
   },
   "wlr/taskbar": {
     "format": "{icon}",
@@ -92,31 +88,31 @@
     "tooltip-format": "{name}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": [
-      "rofi"
-    ]
+    "ignore-list": ["rofi"],
+  },
+  "battery": {
+    "bat": "BAT1",
+    "format": "{capacity}% {icon}",
+    "format-icons": ["", "", "", "", ""],
   },
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
       "activated": "",
-      "deactivated": ""
-    }
+      "deactivated": "",
+    },
   },
   "pulseaudio_slider": {
     "format": "{volume}%",
     "tooltip": false,
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
   },
   "pulseaudio": {
     "format": "{volume}% {icon}",
     "format-muted": " {format_source}",
     "format-icons": {
-      "default": [
-        "",
-        ""
-      ]
-    }
+      "default": ["", ""],
+    },
   },
   "network": {
     "format": "{ifname}",
@@ -126,7 +122,7 @@
     "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Disconnected",
     "max-length": 50,
-    "on-click": "nm-connection-editor"
+    "on-click": "nm-connection-editor",
   },
   "bluetooth": {
     "format-on": "",
@@ -134,12 +130,12 @@
     "format-no-controller": "",
     "on-click": "blueman-manager",
     "on-click-right": "rfkill toggle bluetooth",
-    "tooltip-format": "{status}"
+    "tooltip-format": "{status}",
   },
   "hyprland/language": {
     "format": "{} ",
     "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
     "format-es": "ESP",
-    "format-en": "ENG"
-  }
+    "format-en": "ENG",
+  },
 }

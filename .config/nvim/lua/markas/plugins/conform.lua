@@ -17,6 +17,7 @@ return {
           javascript = with_prettier,
           javascriptreact = with_prettier,
           json = with_prettier,
+          jsonc = with_prettier,
           lua = { "stylua" },
           go = { "gofmt" },
           markdown = with_prettier,
