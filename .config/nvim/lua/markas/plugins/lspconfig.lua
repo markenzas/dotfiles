@@ -119,7 +119,7 @@ return {
       }
       servers.vtsls.settings["js/ts"] = { implicitProjectConfig = { checkJs = true } }
 
-      vim.diagnostic.config({ virtual_text = true })
+      vim.diagnostic.config({ virtual_text = true, jump = { float = true } })
 
       require("mason").setup()
 

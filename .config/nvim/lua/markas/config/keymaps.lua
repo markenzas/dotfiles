@@ -8,8 +8,6 @@ map({ "i", "n" }, "<esc>", "<cmd>nohlsearch<cr><esc>", { desc = "Escape and Clea
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- Diagnostic keymaps
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 map("n", "<Leader>de", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 map("n", "<Leader>dq", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
@@ -40,7 +38,7 @@ map("n", "<S-Left>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Wi
 map("n", "<Leader>bn", "<cmd>enew<CR>", { desc = "Buffer New" })
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Buffer Goto next" })
 map("n", "<S-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Buffer Goto prev" })
-map("n", "<Leader>bd", "<cmd>bd<CR>", { desc = "Buffer Close" })
+map("n", "<Leader>q", "<cmd>bd<CR>", { desc = "Buffer Close" })
 
 -- Window management
 map("n", "<Leader>sv", "<C-w>v", { desc = "Split window vertically" })
