@@ -6,14 +6,12 @@ return {
     init = function()
       vim.cmd.colorscheme("tokyonight-night")
       vim.cmd.hi("comment gui=none")
+      vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#8f8f8f" })
+      vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#8f8f8f" })
     end,
     opts = {
       transparent = true,
     },
-  },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
   },
   {
     "folke/which-key.nvim",
