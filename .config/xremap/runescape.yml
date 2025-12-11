@@ -1,0 +1,15 @@
+modmap:
+  - name: "Global defaults"
+    remap:
+      BTN_SIDE: BTN_SIDE
+      BTN_EXTRA: BTN_EXTRA
+
+keymap:
+  - name: "RuneScape 3"
+    application:
+      only: "steam_app_1343400"
+    remap:
+      BTN_SIDE:
+        - C-e
+      BTN_EXTRA:
+        - C-n

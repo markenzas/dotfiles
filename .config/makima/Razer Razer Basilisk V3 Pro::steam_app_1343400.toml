@@ -1,3 +1,0 @@
-[remap]
-BTN_EXTRA = ["KEY_LEFTCTRL", "KEY_N"] 
-BTN_SIDE = ["KEY_LEFTCTRL", "KEY_E"] 
