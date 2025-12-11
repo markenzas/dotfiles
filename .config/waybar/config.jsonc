@@ -20,8 +20,6 @@
     "tray",
     "wlr/taskbar",
     "battery",
-    "idle_inhibitor",
-    "pulseaudio_slider",
     "pulseaudio",
     "network",
     "bluetooth",
@@ -29,8 +27,8 @@
   ],
   /* === Modules Left === */
   "custom/archicon": {
-    "format": "",
-    "on-click": "wofi --show drun",
+    "format": "", 
+    "on-click": "rofi -show drun",
     "tooltip": false,
   },
   "clock": {
@@ -95,24 +93,15 @@
     "format": "{capacity}% {icon}",
     "format-icons": ["", "", "", "", ""],
   },
-  "idle_inhibitor": {
-    "format": "{icon}",
-    "format-icons": {
-      "activated": "",
-      "deactivated": "",
-    },
-  },
-  "pulseaudio_slider": {
-    "format": "{volume}%",
-    "tooltip": false,
-    "on-click": "pavucontrol",
-  },
   "pulseaudio": {
     "format": "{volume}% {icon}",
-    "format-muted": " {format_source}",
+    "format-muted": "0%  ",
     "format-icons": {
       "default": ["", ""],
     },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "on-click-middle": "pavucontrol",
   },
   "network": {
     "format": "{ifname}",
