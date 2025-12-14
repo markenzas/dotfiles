@@ -1,0 +1,10 @@
+[providers]
+enabled = [
+  "desktopapplications",
+  "calc",
+  "websearch",
+  "files",
+  "clipboard",
+  "symbols",
+  "commands",
+]
