@@ -393,42 +393,115 @@ deploy_dotfiles() {
     
     cd "$DOTFILES_DIR"
     
-    # Get stow packages
-    local packages=($(find . -maxdepth 1 -type d -not -name '.*' -not -name 'scripts' -printf '%f\n'))
-    
-    if [[ ${#packages[@]} -eq 0 ]]; then
-        print_warning "No stow packages found"
-        return 0
+    # Backup existing .config directories
+    print_substep "Backing up existing configurations..."
+    if [[ -d "$HOME/.config" ]]; then
+        # Find all config subdirectories that will be stowed
+        if [[ -d "$DOTFILES_DIR/.config" ]]; then
+            local config_dirs=($(find "$DOTFILES_DIR/.config" -mindepth 1 -maxdepth 1 -type d -printf '%f\n'))
+            local total=${#config_dirs[@]}
+            local current=0
+            
+            echo
+            for dir in "${config_dirs[@]}"; do
+                ((current++))
+                progress_bar $current $total "Checking: $dir"
+                
+                if [[ -e "$HOME/.config/$dir" ]]; then
+                    backup_path "$HOME/.config/$dir"
+                fi
+            done
+        fi
     fi
     
-    local total=${#packages[@]}
-    local current=0
+    # Backup root-level dotfiles (if any exist in dotfiles repo)
+    print_substep "Checking for root-level dotfiles..."
+    local root_files=($(find "$DOTFILES_DIR" -maxdepth 1 -name '.*' -not -name '.git' -not -name '.gitignore' -not -name '.' -not -name '..' -type f -printf '%f\n'))
+    
+    if [[ ${#root_files[@]} -gt 0 ]]; then
+        echo
+        local total=${#root_files[@]}
+        local current=0
+        
+        for file in "${root_files[@]}"; do
+            ((current++))
+            progress_bar $current $total "Checking: $file"
+            
+            if [[ -e "$HOME/$file" ]]; then
+                backup_path "$HOME/$file"
+            fi
+        done
+    fi
+    
+    # Stow dotfiles
+    print_substep "Deploying dotfiles with GNU Stow..."
+    echo
+    
+    # Try to stow everything
+    if stow -v -t "$HOME" --ignore='scripts' --ignore='README.md' --ignore='.git' . >> "$LOG_FILE" 2>&1; then
+        add_rollback "unstow|.|$DOTFILES_DIR"
+        progress_bar 1 1 "Successfully stowed all dotfiles"
+        print_success "Dotfiles deployed successfully"
+    else
+        print_warning "Conflicts detected during stow"
+        echo
+        
+        # Show conflicting files
+        print_info "Checking for conflicts..."
+        local conflicts=$(stow -n -v -t "$HOME" --ignore='scripts' --ignore='README.md' --ignore='.git' . 2>&1 | grep -i "existing" || true)
+        
+        if [[ -n "$conflicts" ]]; then
+            echo -e "${DIM}Conflicting files:${NC}"
+            echo "$conflicts" | head -10
+            [[ $(echo "$conflicts" | wc -l) -gt 10 ]] && echo -e "${DIM}... and more${NC}"
+            echo
+        fi
+        
+        if ask_confirm "Adopt existing files into dotfiles? (This will overwrite repo files with your current configs)"; then
+            print_substep "Adopting existing configurations..."
+            
+            if stow -v -t "$HOME" --adopt --ignore='scripts' --ignore='README.md' --ignore='.git' . >> "$LOG_FILE" 2>&1; then
+                add_rollback "unstow|.|$DOTFILES_DIR"
+                print_success "Dotfiles adopted and deployed"
+                echo
+                print_warning "Your dotfiles repo now contains your existing configs"
+                print_info "Review changes with: cd $DOTFILES_DIR && git diff"
+                print_info "To restore repo versions: cd $DOTFILES_DIR && git checkout ."
+            else
+                print_error "Failed to adopt dotfiles"
+                return 1
+            fi
+        else
+            print_info "Skipping dotfiles deployment due to conflicts"
+            print_info "You can manually resolve conflicts and run again"
+            return 1
+        fi
+    fi
+    
+    # Verify deployment
+    print_substep "Verifying deployment..."
+    local verified=0
+    local failed=0
+    
+    if [[ -d "$DOTFILES_DIR/.config" ]]; then
+        local config_dirs=($(find "$DOTFILES_DIR/.config" -mindepth 1 -maxdepth 1 -type d -printf '%f\n'))
+        
+        for dir in "${config_dirs[@]}"; do
+            if [[ -L "$HOME/.config/$dir" ]] || [[ -e "$HOME/.config/$dir" ]]; then
+                ((verified++))
+            else
+                ((failed++))
+                print_warning "Not deployed: $dir"
+            fi
+        done
+    fi
     
     echo
-    for pkg in "${packages[@]}"; do
-        ((current++))
-        progress_bar $current $total "Processing: $pkg"
-        
-        # Backup existing configs
-        if [[ -d "$HOME/.config/$pkg" ]]; then
-            backup_path "$HOME/.config/$pkg"
-        fi
-        
-        # Stow package
-        if stow -t "$HOME" "$pkg" 2>> "$LOG_FILE"; then
-            add_rollback "unstow|$pkg"
-        else
-            print_warning "Conflict detected with $pkg"
-            if ask_confirm "Adopt existing $pkg configs into dotfiles?"; then
-                stow -t "$HOME" --adopt "$pkg" 2>> "$LOG_FILE"
-                add_rollback "unstow|$pkg"
-                print_info "You may want to review changes: git diff"
-            fi
-        fi
-    done
+    print_success "Verified: $verified configurations"
+    [[ $failed -gt 0 ]] && print_warning "Failed: $failed configurations"
     
     save_state "$step_name"
-    print_success "Dotfiles deployed"
+    print_success "Dotfiles deployment completed"
 }
 
 # Enable services
