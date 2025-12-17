@@ -1,130 +1,161 @@
 {
   "layer": "top",
   "position": "top",
-  "autohide": true,
-  "autohide-blocked": false,
-  "exclusive": true,
-  "passthrough": false,
-  "gtk-layer-shell": true,
-  /* === Modules Order === */
+  "height": 44,
+  "spacing": 0,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+
   "modules-left": [
-    "custom/archicon",
-    "clock",
-    "cpu",
-    "memory",
-    "disk",
-    "temperature",
+    "hyprland/workspaces",
+    "hyprland/window",
+    "tray"
   ],
-  "modules-center": ["hyprland/workspaces"],
+  "modules-center": [
+    "clock",
+    "time"
+  ],
   "modules-right": [
-    "tray",
-    "wlr/taskbar",
-    "battery",
+    "custom/fcitx5",
     "pulseaudio",
     "network",
-    "bluetooth",
-    "hyprland/language",
+    "cpu",
+    "memory",
+    "battery",
+    "temperature"
   ],
-  /* === Modules Left === */
-  "custom/archicon": {
-    "format": "", 
-    "on-click": "rofi -show drun",
-    "tooltip": false,
-  },
-  "clock": {
-    "timezone": "Europe/Vilnius",
-    "format": "{:%H:%M  %d, %m}",
-    "tooltip-format": "{calendar}",
-    "calendar": {
-      "mode": "month",
-    },
-  },
-  "cpu": {
-    "format": "{usage}% ",
-    "tooltip": true,
-    "tooltip-format": "CPU: {usage}%\nNúcleos: {cores}",
-  },
-  "memory": {
-    "format": "{}% 󰍛",
-    "tooltip": true,
-    "tooltip-format": "RAM: {used} / {total} ({percentage}%)",
-  },
-  "disk": {
-    "format": "{percentage_free}% ",
-    "tooltip": true,
-    "tooltip-format": "Disk: {free} / {total} ({percentage_free}%)",
-  },
-  "temperature": {
-    "format": "{temperatureC}°C {icon}",
-    "tooltip": true,
-    "tooltip-format": "Temperature: {temperatureC}°C",
-    "format-icons": [""],
-  },
-  /* === Modules Center === */
+
+  // Workspaces
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "default": "",
-      "active": "",
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
+      "urgent": "",
+      "active": "",
+      "default": ""
     },
-    "persistent-workspaces": {
-      "*": 2,
-    },
-    "disable-scroll": true,
-    "all-outputs": true,
-    "show-special": true,
-  },
-  /* === Modules Right === */
-  "tray": {
-    "icon-size": 16,
-    "padding": 2,
-  },
-  "wlr/taskbar": {
-    "format": "{icon}",
-    "all-outputs": true,
-    "active-first": true,
-    "tooltip-format": "{name}",
     "on-click": "activate",
-    "on-click-middle": "close",
-    "ignore-list": ["rofi"],
+    "sort-by-number": true,
+    "show-special": true
   },
-  "battery": {
-    "bat": "BAT1",
-    "format": "{capacity}% {icon}",
-    "format-icons": ["", "", "", "", ""],
+
+  // Active Window
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 40,
+    "separate-outputs": true
   },
+
+  // Clock with Calendar
+  "clock": {
+    "format": " {:%H:%M - %A, %b %d}",
+    "format-alt": " {:%a, %b %d, %Y}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#cba6f7'><b>{}</b></span>",
+        "days": "<span color='#cdd6f4'>{}</span>",
+        "weeks": "<span color='#94e2d5'>W{}</span>",
+        "weekdays": "<span color='#f9e2af'>{}</span>",
+        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+
+  // Fcitx5 Input Method Indicator
+  "custom/fcitx5": {
+    "exec": "~/.config/waybar/scripts/fcitx5-watcher.sh",
+    "return-type": "json",
+    "interval": 1,
+    "format": "{}",
+    "on-click": "fcitx5-remote -t",
+    "tooltip": true
+  },
+
+  // Audio
   "pulseaudio": {
-    "format": "{volume}% {icon}",
-    "format-muted": "0%  ",
+    "format": "{icon} {volume}%",
+    "format-bluetooth": "󰂯 {volume}%",
+    "format-muted": "󰖁 ",
     "format-icons": {
-      "default": ["", ""],
+      "headphone": "󰋋",
+      "hands-free": "󰋎",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["󰕿", "󰖀", "󰕾"]
     },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-right": "pavucontrol",
-    "on-click-middle": "pavucontrol",
+    "scroll-step": 5,
+    "on-click": "pavucontrol",
+    "on-click-right": "pamixer -t"
   },
+
+  // Network
   "network": {
-    "format": "{ifname}",
-    "format-ethernet": "{ifname} 󰈀",
-    "format-disconnected": " ",
-    "tooltip-format": " {ifname} via {gwaddr}",
-    "tooltip-format-ethernet": " {ifname} {ipaddr}/{cidr}",
+    "format-wifi": "󰤨 {signalStrength}%",
+    "format-ethernet": "󰈀 ",
+    "format-disconnected": "󰤭 ",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)\n{ipaddr}",
+    "tooltip-format-ethernet": "{ifname}\n{ipaddr}/{cidr}",
     "tooltip-format-disconnected": "Disconnected",
-    "max-length": 50,
-    "on-click": "nm-connection-editor",
+    "on-click": "nm-connection-editor"
   },
-  "bluetooth": {
-    "format-on": "",
-    "format-disabled": "",
-    "format-no-controller": "",
-    "on-click": "blueman-manager",
-    "on-click-right": "rfkill toggle bluetooth",
-    "tooltip-format": "{status}",
+
+  // CPU
+  "cpu": {
+    "format": "{icon} {usage}%",
+    "tooltip": true,
+    "interval": 2,
+    "format-icons": ["󰻠"]
   },
-  "hyprland/language": {
-    "format": "{} ",
-    "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next",
-    "format-es": "ESP",
-    "format-en": "ENG",
+
+  // Memory
+  "memory": {
+    "format": "{icon} {used:0.1f}GB",
+    "tooltip-format": "{used:0.1f}GB / {total:0.1f}GB",
+    "format-icons": ["󰍛"]
   },
+
+  // Temperature
+  "temperature": {
+    "format": "{icon} {temperatureC}°C",
+    "tooltip": true,
+    "tooltip-format": "Temperature: {temperatureC}°C",
+    "format-icons": [""]
+  },
+
+  // Battery
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  },
+
+  // System Tray for libappindicator apps
+  "tray": {
+    "icon-size": 18,
+    "spacing": 8,
+    "show-passive-items": true
+  }
 }

@@ -1,178 +1,237 @@
 /* -- Global rules -- */
+/* Catppuccin Mocha Color Palette */
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
+@define-color text #cdd6f4;
+@define-color subtext0 #a6adc8;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color blue #89b4fa;
+@define-color lavender #b4befe;
+@define-color sapphire #74c7ec;
+@define-color sky #89dceb;
+@define-color teal #94e2d5;
+@define-color green #a6e3a1;
+@define-color yellow #f9e2af;
+@define-color peach #fab387;
+@define-color maroon #eba0ac;
+@define-color red #f38ba8;
+@define-color mauve #cba6f7;
+@define-color pink #f5c2e7;
+@define-color flamingo #f2cdcd;
+@define-color rosewater #f5e0dc;
+
 * {
-  border: none;
-  font-family: "JetbrainsMono Nerd Font";
-  font-size: 15px;
-  min-height: 10px;
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  font-weight: 500;
+  min-height: 0;
 }
 
 window#waybar {
-  background: rgba(34, 36, 54, 0.6);
+  background: transparent;
 }
 
-window#waybar.hidden {
-  opacity: 0.2;
+window#waybar>box {
+  background: alpha(@base, 0.85);
+  border: 2px solid @surface1;
+  border-radius: 14px;
+  margin: 0;
+  padding: 2px 8px;
 }
 
-/* - Genera rules for visible modules -- */
-#custom-archicon,
-#battery,
-#bluetooth,
+/* Reset all modules */
+#workspaces,
+#window,
 #clock,
+#custom-fcitx5,
+#pulseaudio,
+#network,
 #cpu,
 #memory,
-#disk,
+#battery,
 #temperature,
-#pulseaudio,
-#pulseaudio_slider,
-#network,
-#language {
-  color: #161320;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-  transition: none;
-}
-
-/* Separation to the left */
-#custom-archicon,
-#cpu {
-  margin-left: 5px;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
-/* Separation to the rigth */
-#clock,
-#temperature,
-#language {
-  margin-right: 5px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-/* -- Specific styles -- */
-
-/* Modules left */
-#custom-archicon {
-  font-size: 20px;
-  color: #89b4fa;
-  background: #161320;
-  padding-right: 17px;
-}
-
-#clock {
-  background: #abe9b3;
-}
-
-#cpu {
-  background: #96cdfb;
-}
-
-#memory {
-  background: #ddb6f2;
-}
-
-#disk {
-  background: #f5c2e7;
-}
-
-#temperature {
-  background: #f8bd96;
-}
-
-/* Modules center */
-#workspaces {
-  background: rgba(0, 0, 0, 0.5);
+#tray {
+  padding: 0 12px;
+  margin: 4px 2px;
   border-radius: 10px;
-  margin: 6px 5px;
-  padding: 0px 6px;
+  background: transparent;
+  color: @text;
+  transition: all 0.3s ease;
+}
+
+/* Workspaces */
+#workspaces {
+  background: @surface0;
+  padding: 0 4px;
 }
 
 #workspaces button {
-  color: #b5e8e0;
+  padding: 0 8px;
+  margin: 4px 2px;
+  border-radius: 8px;
+  color: @subtext0;
   background: transparent;
-  padding: 4px 4px;
-  transition:
-    color 0.3s ease,
-    text-shadow 0.3s ease,
-    transform 0.3s ease;
-}
-
-#workspaces button.occupied {
-  color: #a6e3a1;
-}
-
-#workspaces button.active {
-  color: #89b4fa;
-  text-shadow: 0 0 4px #abe9b3;
+  border: none;
+  transition: all 0.2s ease;
 }
 
 #workspaces button:hover {
-  color: #89b4fa;
+  background: @surface1;
+  color: @text;
 }
 
-/* Modules right */
-#taskbar {
-  background: transparent;
-  border-radius: 10px;
-  padding: 0px 5px;
-  margin: 6px 5px;
+#workspaces button.active {
+  background: @mauve;
+  color: @base;
+  font-weight: bold;
 }
 
-#taskbar button {
-  padding: 0px 5px;
-  margin: 0px 3px;
-  border-radius: 6px;
-  transition: background 0.3s ease;
+#workspaces button.urgent {
+  background: @red;
+  color: @base;
 }
 
-#taskbar button.active {
-  background: rgba(34, 36, 54, 0.5);
+/* Window Title */
+#window {
+  color: @subtext0;
+  font-style: italic;
 }
 
-#taskbar button:hover {
-  background: rgba(34, 36, 54, 0.5);
+/* Clock */
+#clock {
+  background: @surface0;
+  color: @blue;
+  font-weight: bold;
 }
 
+/* Fcitx5 Input Method - Dedicated styling */
+#custom-fcitx5 {
+  background: @surface0;
+  padding: 0 14px;
+  font-weight: bold;
+  min-width: 30px;
+}
+
+#custom-fcitx5.english {
+  color: @sapphire;
+}
+
+#custom-fcitx5.japanese {
+  color: @pink;
+  background: linear-gradient(135deg, @surface0, alpha(@pink, 0.2));
+}
+
+#custom-fcitx5.other {
+  color: @peach;
+}
+
+/* Audio */
 #pulseaudio {
-  color: #1a1826;
-  background: #f5e0dc;
+  color: @lavender;
+  font-size: 16px;
 }
 
-#pulseaudio_slider {
-  color: #1a1826;
-  background: #e8a2af;
+#pulseaudio.muted {
+  color: @surface1;
 }
 
+/* Network */
 #network {
-  background: #cba6f7;
-  padding-right: 13px;
+  color: @teal;
+  font-size: 16px;
 }
 
+#network.disconnected {
+  color: @red;
+}
+
+/* CPU */
+#cpu {
+  color: @green;
+  font-size: 16px;
+}
+
+/* Memory */
+#memory {
+  color: @peach;
+  font-size: 16px;
+}
+
+/* Battery */
 #battery {
-  background: #c2dbb8;
-  padding-right: 13px;
-  border-left: 10px;
-  border-right: 10px;
+  color: @green;
+  font-size: 16px;
 }
 
-#bluetooth {
-  background: #5f69d4;
-  padding-left: 10px;
-  padding-right: 10px;
+#battery.charging {
+  color: @yellow;
 }
 
-#language {
-  background: #a6e3a1;
-  padding-right: 15px;
+#battery.warning:not(.charging) {
+  color: @peach;
 }
 
-/* === Optional animation === */
-@keyframes blink {
-  to {
-    background-color: #bf616a;
-    color: #b5e8e0;
-  }
+#battery.critical:not(.charging) {
+  color: @red;
+}
+
+#temperature {
+  color: @red;
+  font-size: 16px;
+}
+
+#tray {
+  background: @surface0;
+  padding: 0 8px;
+}
+
+#tray>.passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray>.needs-attention {
+  -gtk-icon-effect: highlight;
+  background: alpha(@red, 0.3);
+  border-radius: 8px;
+}
+
+#tray menu {
+  background: @base;
+  border: 1px solid @surface1;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+#tray menu menuitem {
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+#tray menu menuitem:hover {
+  background: @surface1;
+}
+
+/* Hover effects for all modules */
+#custom-fcitx5:hover,
+#pulseaudio:hover,
+#network:hover,
+#cpu:hover,
+#memory:hover,
+#battery:hover,
+#clock:hover {
+  background: @surface1;
+}
+
+/* Tooltip styling */
+tooltip {
+  background: @base;
+  border: 2px solid @surface1;
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: @text;
+  padding: 8px;
 }
