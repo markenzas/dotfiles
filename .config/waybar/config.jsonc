@@ -102,7 +102,7 @@
     },
     "scroll-step": 5,
     "on-click": "pavucontrol",
-    "on-click-right": "pamixer -t"
+    "on-click-right": "blueman-manager"
   },
 
   // Network
