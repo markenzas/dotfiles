@@ -50,19 +50,20 @@ map("n", "<Leader>sd", "<cmd>close<CR>", { desc = "Close current split" })
 map("n", "<leader>cx", "<cmd>source %<CR>", { desc = "[C]ode [E]xecute" })
 
 -- Neotest
+map("n", "<leader>tr", "<cmd>Neotest run<CR>", { desc = "Test Current" })
 map("n", "<leader>tn", "<cmd>Neotest run run<CR>", { desc = "Test Nearest" })
 map("n", "<leader>tf", "<cmd>Neotest run file<CR>", { desc = "Test File" })
 map("n", "<leader>ts", "<cmd>Neotest summary toggle<CR>", { desc = "Test Summary" })
 
-map('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', {
-    desc = "Toggle Spectre"
+map("n", "<leader>S", '<cmd>lua require("spectre").toggle()<CR>', {
+  desc = "Toggle Spectre",
 })
-map('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
-    desc = "Search current word"
+map("n", "<leader>sw", '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+  desc = "Search current word",
 })
-map('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', {
-    desc = "Search current word"
+map("v", "<leader>sw", '<esc><cmd>lua require("spectre").open_visual()<CR>', {
+  desc = "Search current word",
 })
-map('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
-    desc = "Search on current file"
+map("n", "<leader>sp", '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+  desc = "Search on current file",
 })

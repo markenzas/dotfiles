@@ -2,6 +2,7 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     "rcarriga/nvim-dap-ui",
+    "leoluz/nvim-dap-go",
     { "theHamsta/nvim-dap-virtual-text", config = true },
     "nvim-neotest/nvim-nio",
     "williamboman/mason.nvim",
@@ -14,6 +15,7 @@ return {
     vim.g.dap_virtual_text = true
 
     require("dapui").setup()
+    require("dap-go").setup()
 
     local exts = {
       "javascript",
