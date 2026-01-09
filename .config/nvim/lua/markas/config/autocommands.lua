@@ -121,5 +121,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         callback = vim.lsp.buf.clear_references,
       })
     end
+
+    vim.lsp.inlay_hint.enable()
   end,
 })
