@@ -1,12 +1,12 @@
 return {
   {
-    "echasnovski/mini.ai",
-    event = "VeryLazy",
+    "nvim-mini/mini.ai",
+    version = "*",
     opts = { n_lines = 500 },
   },
   {
-    "echasnovski/mini.surround",
-    event = "VeryLazy",
+    "nvim-mini/mini.surround",
+    version = "*",
     opts = {
       mappings = {
         add = "gsa",
@@ -19,8 +19,8 @@ return {
     },
   },
   {
-    "echasnovski/mini.move",
-    event = "VeryLazy",
+    "nvim-mini/mini.move",
+    version = "*",
     opts = {
       mappings = {
         left = "<M-h>",
@@ -35,10 +35,14 @@ return {
     },
   },
   {
-    "echasnovski/mini.jump",
-    event = "VeryLazy",
+    "nvim-mini/mini.jump",
+    version = "*",
     config = function()
       require("mini.jump").setup({})
     end,
+  },
+  {
+    "nvim-mini/mini.diff",
+    version = "*",
   },
 }
