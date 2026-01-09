@@ -9,9 +9,6 @@ return {
       vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#8f8f8f" })
       vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#8f8f8f" })
     end,
-    opts = {
-      transparent = true,
-    },
   },
   {
     "folke/which-key.nvim",
