@@ -11,8 +11,6 @@ function configLinux
   alias wbrr="pkill waybar && waybar & disown && clear"
   alias godot="godot --display-driver wayland"
 
-  fastfetch
-
   # pnpm
   set -gx PNPM_HOME "/home/markas/.local/share/pnpm"
   if not string match -q -- $PNPM_HOME $PATH
