@@ -50,16 +50,6 @@ return {
     opts = {},
   },
   {
-    "brenoprata10/nvim-highlight-colors",
-    config = function()
-      require("nvim-highlight-colors").setup({
-        render = "foreground",
-        named_colors = true,
-        enable_tailwind = true,
-      })
-    end,
-  },
-  {
     "folke/todo-comments.nvim",
     event = "VimEnter",
     dependencies = { "nvim-lua/plenary.nvim" },

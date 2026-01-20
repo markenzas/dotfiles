@@ -36,9 +36,13 @@ return {
                     icon = dev_icon
                   end
                 else
-                  icon = require("lspkind").symbolic(ctx.kind, {
-                    mode = "symbol",
-                  })
+                  local lspkind = require("lspkind")
+
+                  if lspkind.symbolic then
+                    icon = lspkind.symbolic(ctx.kind, { mode = "symbol" })
+                  else
+                    icon = lspkind.presets.default[ctx.kind] or ""
+                  end
                 end
 
                 return icon .. ctx.icon_gap

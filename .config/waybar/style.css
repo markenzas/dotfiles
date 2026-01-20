@@ -202,6 +202,7 @@ window#waybar>box {
   border: 1px solid @surface1;
   border-radius: 8px;
   padding: 8px;
+  color: @text;
 }
 
 #tray menu menuitem {
