@@ -285,4 +285,11 @@ return {
       map("n", "<leader>ntp", ":NeovimTipsPdf<CR>", { desc = "Open Neovim tips PDF", silent = true })
     end,
   },
+  {
+    "nvim-java/nvim-java",
+    config = function()
+      require("java").setup()
+      vim.lsp.enable("jdtls")
+    end,
+  },
 }
