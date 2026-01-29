@@ -101,7 +101,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>cr", vim.lsp.buf.rename, "Code Rename")
     map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
     map("<leader>lr", "<cmd>LspRestart<CR>", "LSP Restart")
-    map("<leader>lf", "<cmd>LspInfo<CR>", "LSP Info")
+    map("<leader>lf", "<cmd>checkhealth lsp<CR>", "LSP Info")
 
     map("<leader>co", LspAction["source.organizeImports"], "Organize Imports")
     map("<leader>ci", LspAction["source.addMissingImports.ts"], "Add missing imports")
