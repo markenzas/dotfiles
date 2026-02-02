@@ -67,6 +67,7 @@ OFFICIAL_PACKAGES=(
     "github-cli"
     "fastfetch"
     "lazygit"
+    "lazyjj"
     "git-delta"
     "zoxide"
     "ripgrep"

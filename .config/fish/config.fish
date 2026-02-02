@@ -29,6 +29,7 @@ function configShared
   alias vim=nvim
   alias vi=nvim
   alias lzg=lazygit
+  alias lzj=lazyjj
   alias lzd=lazydocker
   alias lzs=lazysql
   alias sail="./vendor/bin/sail"
