@@ -7,7 +7,7 @@ modmap:
 keymap:
   - name: "RuneScape 3"
     application:
-      only: "steam_app_1343400"
+      only: ["steam_app_1343400", "rs2client", "RuneScape", "runescape"]
     remap:
       BTN_SIDE:
         - C-e

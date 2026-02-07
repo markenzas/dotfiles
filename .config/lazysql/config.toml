@@ -1,6 +1,10 @@
+ConfigFile = '/home/markas/.config/lazysql/config.toml'
+
 [application]
 DefaultPageSize = 300
 DisableSidebar = false
+SidebarOverlay = false
+MaxQueryHistoryPerConnection = 100
 
 [[database]]
 Name = 'localhost'
@@ -12,4 +16,18 @@ Hostname = ''
 Port = ''
 DBName = 'laravel'
 URLParams = ''
+ReadOnly = false
+Commands = []
+
+[[database]]
+Name = 'BrainArena'
+URL = 'postgres://brain:arena@localhost:5432/brain_arena?sslmode=disable'
+Provider = 'postgres'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'brain_arena'
+URLParams = ''
+ReadOnly = false
 Commands = []
