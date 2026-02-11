@@ -33,8 +33,6 @@ OFFICIAL_PACKAGES=(
     "gvfs"
     
     # Application launcher and utilities
-    "rofi"
-    "rofi-calc"
     "wlogout"
     
     # Notifications
@@ -92,6 +90,7 @@ OFFICIAL_PACKAGES=(
 
 # AUR packages
 AUR_PACKAGES=(
+    "vicinae"
     "brave-bin"
     "xremap-hypr-bin"
     "vencord"
@@ -100,12 +99,5 @@ AUR_PACKAGES=(
     "image-optimizer"
     "lazydocker"
     "lazysql"
-    "walker"
-    "elephant"
-    "elephant-desktopapplications"
-    "elephant-files"
-    "elephant-menus"
-    "elephant-clipboard"
-    "elephant-calc"
 )
 
