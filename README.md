@@ -73,3 +73,8 @@ cat ~/.config/dotfiles-installer/install-*.log
 - **Backups**: `~/.config/dotfiles-installer/backups/`
 - **Logs**: `~/.config/dotfiles-installer/install-*.log`
 - **Rollback**: `~/.config/dotfiles-installer/rollback-*.json`
+
+
+# Troubleshooting
+
+For laptops and for hybrid graphics add `intremap=off` to bootloader settings for black screen, display manager issues.

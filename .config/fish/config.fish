@@ -3,10 +3,7 @@ function configMacOS
 end
 
 function configLinux
-  set -gx LC_ALL en_US.UTF-8
-  set -Ux LIBGL_ALWAYS_SOFTWARE 1 # WSLg
   set -Ux XMODIFIERS '@im=fcitx'
-  set -Ux BROWSER '/mnt/c/Program files/BraveSoftware/Brave-Browser/Application/brave.exe'
 
   alias wbrr="pkill waybar && waybar & disown && clear"
   alias godot="godot --display-driver wayland"
