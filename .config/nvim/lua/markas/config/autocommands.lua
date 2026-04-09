@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  vim.lsp.set_log_level("off"),
+  vim.lsp.log.set_level("off"),
   require("vim.lsp.log").set_format_func(vim.inspect),
 
   callback = function(event)
@@ -108,7 +108,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("<leader>cu", LspAction["source.removeUnused.ts"], "Remove unused imports")
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
-    if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
       local highlight_group = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
       vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         buffer = event.buf,
@@ -123,3 +123,35 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end
   end,
 })
+
+-- Experimental ui2
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "msg",
+  callback = function()
+    local ui2 = require("vim._core.ui2")
+    local win = ui2.wins and ui2.wins.msg
+    if win and vim.api.nvim_win_is_valid(win) then
+      vim.api.nvim_set_option_value(
+        "winhighlight",
+        "Normal:NormalFloat,FloatBorder:FloatBorder",
+        { scope = "local", win = win }
+      )
+    end
+  end,
+})
+
+local ui2 = require("vim._core.ui2")
+local msgs = require("vim._core.ui2.messages")
+local orig_set_pos = msgs.set_pos
+msgs.set_pos = function(tgt)
+  orig_set_pos(tgt)
+  if (tgt == "msg" or tgt == nil) and vim.api.nvim_win_is_valid(ui2.wins.msg) then
+    pcall(vim.api.nvim_win_set_config, ui2.wins.msg, {
+      relative = "editor",
+      anchor = "NE",
+      row = 1,
+      col = vim.o.columns - 1,
+      border = "rounded",
+    })
+  end
+end

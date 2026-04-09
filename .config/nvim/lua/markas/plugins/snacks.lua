@@ -26,7 +26,6 @@ return {
     indent = { enabled = true },
     image = { enabled = true },
     input = { enabled = true },
-    notifier = { enabled = true },
     notify = { enabled = true },
     git = { enabled = true },
     gh = { enabled = true },

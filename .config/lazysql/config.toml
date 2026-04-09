@@ -31,3 +31,16 @@ DBName = 'brain_arena'
 URLParams = ''
 ReadOnly = false
 Commands = []
+
+[[database]]
+Name = 'Workfinder'
+URL = 'postgres://workfinder:workfinder_dev@localhost:5432/workfinder?sslmode=disable'
+Provider = 'postgres'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'workfinder'
+URLParams = ''
+ReadOnly = false
+Commands = []

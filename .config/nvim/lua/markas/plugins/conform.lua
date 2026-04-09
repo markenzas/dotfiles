@@ -1,4 +1,4 @@
-local with_prettier = { "prettierd", "prettier", lsp_format = "fallback" }
+local with_prettier = { "prettier", lsp_format = "fallback" }
 
 return {
   {

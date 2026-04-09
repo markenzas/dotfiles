@@ -2,7 +2,9 @@
   "strict types": {
     "prefix": "strict",
     "description": "Add strict types declaration",
-    "body": ["declare(strict_types=1);"]
+    "body": [
+      "declare(strict_types=1);"
+    ]
   },
   "inv": {
     "prefix": "inv",
@@ -18,7 +20,13 @@
   "public method": {
     "prefix": "pubf",
     "description": "Create a public method",
-    "body": ["public function ${1}(${2}): ${3:void}", "{", "    ${0}", "}", ""]
+    "body": [
+      "public function ${1}(${2}): ${3:void}",
+      "{",
+      "    ${0}",
+      "}",
+      ""
+    ]
   },
   "protected method": {
     "prefix": "prof",
@@ -34,7 +42,13 @@
   "private method": {
     "prefix": "prif",
     "description": "Create a private method",
-    "body": ["private function ${1}(${2}): ${3:void}", "{", "    ${0}", "}", ""]
+    "body": [
+      "private function ${1}(${2}): ${3:void}",
+      "{",
+      "    ${0}",
+      "}",
+      ""
+    ]
   },
   "public static method": {
     "prefix": "pubsf",
