@@ -79,7 +79,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
-  vim.lsp.log.set_level("off"),
+  vim.lsp.log.set_level("trace"),
   require("vim.lsp.log").set_format_func(vim.inspect),
 
   callback = function(event)
@@ -125,20 +125,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Experimental ui2
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "msg",
-  callback = function()
-    local ui2 = require("vim._core.ui2")
-    local win = ui2.wins and ui2.wins.msg
-    if win and vim.api.nvim_win_is_valid(win) then
-      vim.api.nvim_set_option_value(
-        "winhighlight",
-        "Normal:NormalFloat,FloatBorder:FloatBorder",
-        { scope = "local", win = win }
-      )
-    end
-  end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "msg",
+--   callback = function()
+--     local ui2 = require("vim._core.ui2")
+--     local win = ui2.wins and ui2.wins.msg
+--     if win and vim.api.nvim_win_is_valid(win) then
+--       vim.api.nvim_set_option_value(
+--         "winhighlight",
+--         "Normal:NormalFloat,FloatBorder:FloatBorder",
+--         { scope = "local", win = win }
+--       )
+--     end
+--   end,
+-- })
 
 local ui2 = require("vim._core.ui2")
 local msgs = require("vim._core.ui2.messages")

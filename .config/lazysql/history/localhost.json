@@ -1,0 +1,6 @@
+[
+  {
+    "QueryText": "UPDATE \"public\".\"users\" SET \"tutorial_step\" = '4' WHERE \"id\" = 'a18c6c9e-906f-4d1c-8ed7-5f88e3ad3084'",
+    "Timestamp": "2026-04-15T10:27:14.060573161Z"
+  }
+]

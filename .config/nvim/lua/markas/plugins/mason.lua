@@ -8,7 +8,7 @@ return {
       "html",
       "cssls",
       "tailwindcss",
-      "phpactor",
+      "intelephense",
       "prismals",
       "gopls",
       "vtsls",
