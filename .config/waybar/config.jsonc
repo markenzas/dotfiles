@@ -9,7 +9,6 @@
 
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/window",
     "tray"
   ],
   "modules-center": [
@@ -17,7 +16,6 @@
     "time"
   ],
   "modules-right": [
-    "custom/fcitx5",
     "pulseaudio",
     "network",
     "cpu",
@@ -49,13 +47,6 @@
     "show-special": true
   },
 
-  // Active Window
-  "hyprland/window": {
-    "format": "{}",
-    "max-length": 40,
-    "separate-outputs": true
-  },
-
   // Clock with Calendar
   "clock": {
     "format": " {:%H:%M - %A, %b %d}",
@@ -74,16 +65,6 @@
         "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
       }
     }
-  },
-
-  // Fcitx5 Input Method Indicator
-  "custom/fcitx5": {
-    "exec": "~/.config/waybar/scripts/fcitx5-watcher.sh",
-    "return-type": "json",
-    "interval": 1,
-    "format": "{}",
-    "on-click": "fcitx5-remote -t",
-    "tooltip": true
   },
 
   // Audio

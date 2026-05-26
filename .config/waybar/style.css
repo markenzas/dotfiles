@@ -33,7 +33,7 @@ window#waybar {
   background: transparent;
 }
 
-window#waybar>box {
+window#waybar > box {
   background: alpha(@base, 0.85);
   border: 2px solid @surface1;
   border-radius: 14px;
@@ -45,7 +45,6 @@ window#waybar>box {
 #workspaces,
 #window,
 #clock,
-#custom-fcitx5,
 #pulseaudio,
 #network,
 #cpu,
@@ -93,38 +92,11 @@ window#waybar>box {
   color: @base;
 }
 
-/* Window Title */
-#window {
-  color: @subtext0;
-  font-style: italic;
-}
-
 /* Clock */
 #clock {
   background: @surface0;
   color: @blue;
   font-weight: bold;
-}
-
-/* Fcitx5 Input Method - Dedicated styling */
-#custom-fcitx5 {
-  background: @surface0;
-  padding: 0 14px;
-  font-weight: bold;
-  min-width: 30px;
-}
-
-#custom-fcitx5.english {
-  color: @sapphire;
-}
-
-#custom-fcitx5.japanese {
-  color: @pink;
-  background: linear-gradient(135deg, @surface0, alpha(@pink, 0.2));
-}
-
-#custom-fcitx5.other {
-  color: @peach;
 }
 
 /* Audio */
@@ -187,11 +159,11 @@ window#waybar>box {
   padding: 0 8px;
 }
 
-#tray>.passive {
+#tray > .passive {
   -gtk-icon-effect: dim;
 }
 
-#tray>.needs-attention {
+#tray > .needs-attention {
   -gtk-icon-effect: highlight;
   background: alpha(@red, 0.3);
   border-radius: 8px;
@@ -215,7 +187,6 @@ window#waybar>box {
 }
 
 /* Hover effects for all modules */
-#custom-fcitx5:hover,
 #pulseaudio:hover,
 #network:hover,
 #cpu:hover,
