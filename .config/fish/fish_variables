@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export --path CAPACITOR_ANDROID_STUDIO_PATH:/opt/android\x2dstudio/bin/studio\x2esh
 SETUVAR --export --path PKG_CONFIG_PATH:/usr/bin/pkg\x2dconfig
 SETUVAR --export XMODIFIERS:\x40im\x3dfcitx
 SETUVAR __fish_initialized:4300

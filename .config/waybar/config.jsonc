@@ -11,17 +11,17 @@
     "hyprland/workspaces",
     "tray"
   ],
-  "modules-center": [
-    "clock",
-    "time"
-  ],
+  "modules-center": [],
   "modules-right": [
+    "custom/notification",
     "pulseaudio",
     "network",
     "cpu",
     "memory",
     "battery",
-    "temperature"
+    "temperature",
+    "clock#vilnius",
+    "clock"
   ],
 
   // Workspaces
@@ -47,10 +47,9 @@
     "show-special": true
   },
 
-  // Clock with Calendar
+  // Clock – local time + date
   "clock": {
-    "format": " {:%H:%M - %A, %b %d}",
-    "format-alt": " {:%a, %b %d, %Y}",
+    "format": " {:%H:%M · %a, %b %d}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",
@@ -65,6 +64,13 @@
         "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
       }
     }
+  },
+
+  // Clock – home (Vilnius)
+  "clock#vilnius": {
+    "format": " {:%H:%M}",
+    "timezone": "Europe/Vilnius",
+    "tooltip-format": "Vilnius: {:%H:%M:%S %Z}"
   },
 
   // Audio
@@ -138,5 +144,27 @@
     "icon-size": 18,
     "spacing": 8,
     "show-passive-items": true
+  },
+
+  // Notification bell (swaync)
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂚",
+      "dnd-notification": "󱏧",
+      "dnd-none": "󰂛",
+      "inhibited-notification": "󱅫",
+      "inhibited-none": "󰂚",
+      "dnd-inhibited-notification": "󱏧",
+      "dnd-inhibited-none": "󰂛"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
   }
 }

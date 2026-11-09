@@ -99,6 +99,12 @@ window#waybar > box {
   font-weight: bold;
 }
 
+#clock.vilnius {
+  background: @surface0;
+  color: @sapphire;
+  font-weight: bold;
+}
+
 /* Audio */
 #pulseaudio {
   color: @lavender;
@@ -192,8 +198,20 @@ window#waybar > box {
 #cpu:hover,
 #memory:hover,
 #battery:hover,
-#clock:hover {
+#clock:hover,
+#custom-notification:hover {
   background: @surface1;
+}
+
+/* Notification bell */
+#custom-notification {
+  color: @mauve;
+  font-size: 16px;
+  padding: 0 12px;
+  margin: 4px 2px;
+  border-radius: 10px;
+  background: transparent;
+  transition: all 0.3s ease;
 }
 
 /* Tooltip styling */

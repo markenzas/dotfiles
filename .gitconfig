@@ -29,3 +29,5 @@
 [alias]
 	lol = log --oneline --decorate
 	graph = log --oneline --graph --decorate
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/

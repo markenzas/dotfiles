@@ -5,6 +5,8 @@ DefaultPageSize = 300
 DisableSidebar = false
 SidebarOverlay = false
 MaxQueryHistoryPerConnection = 100
+TreeWidth = 30
+JSONViewerWordWrap = false
 
 [[database]]
 Name = 'localhost'
@@ -17,6 +19,7 @@ Port = ''
 DBName = 'laravel'
 URLParams = ''
 ReadOnly = false
+Schemas = []
 Commands = []
 
 [[database]]
@@ -30,6 +33,7 @@ Port = ''
 DBName = 'brain_arena'
 URLParams = ''
 ReadOnly = false
+Schemas = []
 Commands = []
 
 [[database]]
@@ -43,4 +47,19 @@ Port = ''
 DBName = 'workfinder'
 URLParams = ''
 ReadOnly = false
+Schemas = []
+Commands = []
+
+[[database]]
+Name = 'taupr prod'
+URL = 'postgresql://taupr:OD7X5g1Wx5EKHrBg9CLdZqfTkIvQX+t1gidc3Zr5J78=@taupr.com/taupr'
+Provider = 'postgres'
+Username = ''
+Password = ''
+Hostname = ''
+Port = ''
+DBName = 'taupr'
+URLParams = ''
+ReadOnly = false
+Schemas = []
 Commands = []

@@ -1,0 +1,444 @@
+/* ============================================
+   SwayNC — Catppuccin Mocha
+   ============================================ */
+
+/* -- Palette -- */
+@define-color base      #1e1e2e;
+@define-color mantle    #181825;
+@define-color crust     #11111b;
+@define-color text      #cdd6f4;
+@define-color subtext1  #bac2de;
+@define-color subtext0  #a6adc8;
+@define-color overlay2  #9399b2;
+@define-color overlay1  #7f849c;
+@define-color overlay0  #6c7086;
+@define-color surface2  #585b70;
+@define-color surface1  #45475a;
+@define-color surface0  #313244;
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+@define-color sapphire  #74c7ec;
+@define-color sky       #89dceb;
+@define-color teal      #94e2d5;
+@define-color green     #a6e3a1;
+@define-color yellow    #f9e2af;
+@define-color peach     #fab387;
+@define-color maroon    #eba0ac;
+@define-color red       #f38ba8;
+@define-color mauve     #cba6f7;
+@define-color pink      #f5c2e7;
+@define-color flamingo  #f2cdcd;
+@define-color rosewater #f5e0dc;
+
+/* ── Global ── */
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ── Notification popups (right side) ── */
+.notification-row {
+  outline: none;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+  background: transparent;
+}
+
+.notification {
+  background: alpha(@base, 0.92);
+  border: 2px solid @surface1;
+  border-radius: 14px;
+  margin: 6px 12px;
+  padding: 0;
+  transition: all 200ms ease;
+}
+
+.notification:hover {
+  border-color: @mauve;
+}
+
+.notification-content {
+  padding: 10px 14px;
+}
+
+.notification-default-action {
+  border-radius: 14px;
+}
+
+.notification-default-action:hover {
+  background: alpha(@surface0, 0.4);
+}
+
+/* App name / summary / body */
+.summary {
+  color: @text;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.time {
+  color: @overlay0;
+  font-size: 11px;
+  margin-right: 4px;
+}
+
+.body {
+  color: @subtext0;
+  font-size: 12.5px;
+}
+
+.body-image {
+  border-radius: 10px;
+  margin-top: 6px;
+}
+
+.notification-image {
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+/* close button */
+.close-button {
+  background: @surface0;
+  color: @subtext0;
+  border-radius: 8px;
+  border: none;
+  padding: 2px;
+  margin: 8px 8px 0 0;
+  min-width: 24px;
+  min-height: 24px;
+  transition: all 150ms ease;
+}
+
+.close-button:hover {
+  background: @red;
+  color: @base;
+}
+
+/* action buttons inside notification */
+.notification-action {
+  background: @surface0;
+  color: @text;
+  border: 1px solid @surface1;
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin: 4px 2px;
+  transition: all 150ms ease;
+}
+
+.notification-action:hover {
+  background: @mauve;
+  color: @base;
+  border-color: @mauve;
+}
+
+.notification-action:first-child {
+  border-radius: 8px 8px 8px 8px;
+}
+
+.notification-action:last-child {
+  border-radius: 8px 8px 8px 8px;
+}
+
+/* critical urgency */
+.critical {
+  border-color: @red;
+}
+
+.critical .summary {
+  color: @red;
+}
+
+/* low urgency */
+.low {
+  border-color: @surface0;
+}
+
+/* ── Control Center ── */
+.control-center {
+  background: alpha(@base, 0.92);
+  border: 2px solid @surface1;
+  border-radius: 18px;
+  padding: 12px;
+  transition: all 200ms ease;
+}
+
+/* Title row */
+.widget-title {
+  color: @text;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 4px 8px 8px 8px;
+}
+
+.widget-title > label {
+  color: @text;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.widget-title > button {
+  background: @surface0;
+  color: @subtext0;
+  border: 1px solid @surface1;
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-size: 12px;
+  transition: all 150ms ease;
+}
+
+.widget-title > button:hover {
+  background: @red;
+  color: @base;
+  border-color: @red;
+}
+
+/* DND toggle */
+.widget-dnd {
+  background: @surface0;
+  border-radius: 12px;
+  margin: 4px 8px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: @text;
+}
+
+.widget-dnd > switch {
+  border-radius: 10px;
+  background: @surface1;
+  border: none;
+}
+
+.widget-dnd > switch:checked {
+  background: @mauve;
+}
+
+.widget-dnd > switch slider {
+  background: @text;
+  border-radius: 50%;
+  min-width: 18px;
+  min-height: 18px;
+  margin: 2px;
+}
+
+/* ── MPRIS media player ── */
+.widget-mpris {
+  background: @surface0;
+  border-radius: 14px;
+  margin: 4px 8px;
+  padding: 10px;
+}
+
+.widget-mpris-player {
+  background: transparent;
+  padding: 6px;
+  border-radius: 12px;
+}
+
+.widget-mpris-title {
+  color: @text;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.widget-mpris-subtitle {
+  color: @subtext0;
+  font-size: 12px;
+}
+
+.widget-mpris > box > button {
+  background: transparent;
+  color: @lavender;
+  border: none;
+  border-radius: 50%;
+  min-width: 32px;
+  min-height: 32px;
+  margin: 2px;
+  transition: all 150ms ease;
+}
+
+.widget-mpris > box > button:hover {
+  background: alpha(@lavender, 0.2);
+  color: @text;
+}
+
+/* ── Volume widget ── */
+.widget-volume {
+  background: @surface0;
+  border-radius: 14px;
+  margin: 4px 8px;
+  padding: 10px 14px;
+}
+
+.widget-volume > box > button {
+  background: transparent;
+  color: @lavender;
+  border: none;
+  min-width: 28px;
+  min-height: 28px;
+  border-radius: 8px;
+  transition: all 150ms ease;
+}
+
+.widget-volume > box > button:hover {
+  background: alpha(@lavender, 0.2);
+}
+
+/* ── Backlight widget ── */
+.widget-backlight {
+  background: @surface0;
+  border-radius: 14px;
+  margin: 4px 8px;
+  padding: 10px 14px;
+}
+
+/* ── Shared slider styling (volume & backlight) ── */
+.widget-volume scale,
+.widget-backlight scale {
+  margin: 0 6px;
+}
+
+.widget-volume scale trough,
+.widget-backlight scale trough {
+  background: @surface1;
+  border-radius: 10px;
+  min-height: 8px;
+}
+
+.widget-volume scale highlight,
+.widget-backlight scale highlight {
+  background: @mauve;
+  border-radius: 10px;
+  min-height: 8px;
+}
+
+.widget-volume scale slider,
+.widget-backlight scale slider {
+  background: @text;
+  border-radius: 50%;
+  min-width: 18px;
+  min-height: 18px;
+  margin: -5px 0;
+  border: none;
+  box-shadow: 0 1px 3px alpha(@crust, 0.5);
+}
+
+.widget-volume label,
+.widget-backlight label {
+  color: @subtext0;
+  font-size: 16px;
+  min-width: 28px;
+}
+
+/* per-app volume */
+.per-app-volume {
+  background: alpha(@surface1, 0.4);
+  border-radius: 10px;
+  margin: 4px 0;
+  padding: 6px 10px;
+}
+
+/* ── Buttons grid (quick toggles) ── */
+.widget-buttons-grid {
+  background: @surface0;
+  border-radius: 14px;
+  margin: 4px 8px;
+  padding: 8px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  background: @surface1;
+  color: @subtext0;
+  border: none;
+  border-radius: 12px;
+  min-width: 52px;
+  min-height: 40px;
+  margin: 4px;
+  font-size: 18px;
+  transition: all 200ms ease;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
+  background: alpha(@mauve, 0.25);
+  color: @text;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button.toggle:checked {
+  background: @mauve;
+  color: @base;
+}
+
+/* ── Notification list inside control center ── */
+.control-center .notification {
+  background: @surface0;
+  border: 1px solid alpha(@surface1, 0.5);
+  border-radius: 12px;
+  margin: 4px 4px;
+}
+
+.control-center .notification:hover {
+  border-color: alpha(@mauve, 0.5);
+}
+
+.control-center .notification-default-action {
+  border-radius: 12px;
+}
+
+/* empty label */
+.control-center .notification-row .notification-background .notification-content {
+  padding: 8px 12px;
+}
+
+/* "No notifications" placeholder */
+.blank-window {
+  background: transparent;
+}
+
+/* Scrollbar inside control center */
+.control-center scrollbar {
+  border-radius: 10px;
+}
+
+.control-center scrollbar slider {
+  background: @surface2;
+  border-radius: 10px;
+  min-width: 6px;
+}
+
+.control-center scrollbar slider:hover {
+  background: @overlay0;
+}
+
+/* ── Floating notification (inline reply, etc.) ── */
+.floating-notifications {
+  background: transparent;
+}
+
+.floating-notifications .notification {
+  box-shadow: 0 4px 16px alpha(@crust, 0.6);
+}
+
+/* ── Inhibitor (when app requests no-dismiss) ── */
+.widget-inhibitors {
+  background: @surface0;
+  border-radius: 14px;
+  margin: 4px 8px;
+  padding: 10px 14px;
+  color: @text;
+}
+
+.widget-inhibitors > button {
+  background: @red;
+  color: @base;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  transition: all 150ms ease;
+}
+
+.widget-inhibitors > button:hover {
+  background: @maroon;
+}
